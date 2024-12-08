@@ -174,9 +174,16 @@
     max-width: 500px;
     padding: 1rem;
     color: var(--White);
+    opacity: 1;
+    visibility: visible; /* Mantiene el espacio del elemento */
+    transition: opacity 0.5s ease; /* Transición suave */
     background-color: var(--Grey900);
     border-radius: 1.2rem;
  }
+
+ .invisible{
+    opacity: 0;
+}
 
 .success-message__title .success-message__icon{
     display: inline-block;
