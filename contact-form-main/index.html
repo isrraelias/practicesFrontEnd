@@ -13,6 +13,7 @@
     rel="stylesheet" />
   <title>Frontend Mentor | Contact form</title>
   <link rel="stylesheet" href="./styles/styles.css" />
+  <link rel="stylesheet" href="./styles/desktop.css" media="screen and (min-width: 1024px)">
 </head>
 
 <body>
@@ -23,11 +24,11 @@
         <p class="success-message__content">Thanks for completing the form. We´ll be in touch soon!</p>
       </div>
       <h2>Contact Us</h2>
-      <label for="firstName" class="contact-form__label">
+      <label for="firstName" class="contact-form__label contact-form__label-mod">
         <p class="contact-form__p">First Name <span class="contact-form__mandatory-convention">*</span></p>
         <input type="text" id="firstName" name="firstName" required class="contact-form__input" />
       </label>
-      <label for="lastName" class="contact-form__label">
+      <label for="lastName" class="contact-form__label contact-form__label-mod">
         <p class="contact-form__p">Last Name <span class="contact-form__mandatory-convention">*</span></p>
         <input type="text" id="lastName" name="lastName" required class="contact-form__input" />
       </label>
