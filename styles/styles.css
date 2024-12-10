@@ -9,6 +9,7 @@
 :root{
    --Green200: hsl(148, 38%, 91%);
    --Green600: hsl(169, 82%, 27%);
+   --GreenDark: #063f36;
    --Red: hsl(0, 66%, 54%);
    --White: hsl(0, 0%, 100%);
    --Grey500: hsl(186, 15%, 59%);
@@ -70,6 +71,15 @@ html{
     border-radius: 10px;
 }
 
+.contact-form__input:hover{
+    cursor: pointer;
+}
+
+.contact-form__input:focus{
+    border-color: var(--Green200);
+    outline: none;
+}
+
 .contact-form__fieldset{
     display: flex;
     flex-direction: column;
@@ -93,10 +103,18 @@ html{
     margin-right: 1.5rem;
 }
 
+.contact-form__label-radio:hover{
+    cursor: pointer;
+}
+
 .contact-form__textarea{
     width: 100%;
     margin-top: 1rem;
     border-radius: 0.5rem;
+}
+
+.contact-form__textarea:hover{
+    cursor: pointer;
 }
 
 .contact-form__label-consent {
@@ -116,4 +134,9 @@ html{
     background-color: var(--Green600);
     color: var(--White);
     font-size: 1.6rem;
+}
+
+.contact-form__submit-button:hover{
+    cursor: pointer;
+    background-color: var(--GreenDark);
 }
