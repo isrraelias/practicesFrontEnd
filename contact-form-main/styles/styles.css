@@ -1,0 +1,241 @@
+/*
+1. Posicionamiento
+2. Modelo caja (Box model)
+3. tipografia
+4. Visuales
+5. Otros
+ */
+
+ :root{
+    --Green200: hsl(148, 38%, 91%);
+    --Green600: hsl(169, 82%, 27%);
+    --GreenDark: #063f36;
+    --GreenIcons: hsl(169.38deg 82.48% 26.86%);
+    --Red: hsl(0, 66%, 54%);
+    --White: hsl(0, 0%, 100%);
+    --Grey500: hsl(186, 15%, 59%);
+    --Grey900: hsl(187, 24%, 22%);
+ }
+ 
+ *{
+     box-sizing: border-box;
+     margin: 0;
+     padding: 0;
+ }
+ 
+ html{
+     font-size: 62.5%;
+     font-family: "Karla", serif;
+     color: var(--Grey900);
+ }
+ 
+ .main-form{
+     height: auto;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     background-color: var(--Green200);
+ }
+ 
+ .contact-form{
+     /* height: 92%; */
+     width: 92%;
+     padding: 18px;
+     margin: 3rem 0;
+     display: flex;
+     flex-direction: column;
+     justify-content: space-between;
+     background-color: var(--White);
+     border-radius: 1.8rem;
+     font-size: 1.6rem;
+ }
+ 
+ .contact-form h2{
+     margin-bottom: 3rem;
+     font-size: 3rem;
+     font-weight: 700;
+ }
+ 
+ .contact-form__label{
+     margin-bottom: 30px;
+ }
+ 
+ .contact-form__mandatory-convention{
+     color: var(--Green600);
+ }
+ 
+ .contact-form__input {
+     width: 100%;
+     min-height: 5rem;
+     margin-top: 1rem ;
+     /*border-width: thin; le da por defecto un borde de casi un pixel  */
+     border-width: thin;
+     border-radius: 10px;
+ }
+ 
+ .contact-form__input:hover{
+     cursor: pointer;
+ }
+ 
+ .contact-form__input:focus{
+    border: 0.19rem solid var(--Green600);
+     outline: none;
+ }
+ 
+ .contact-form__fieldset{
+     display: flex;
+     flex-direction: column;
+     margin-bottom: 2rem;
+     border-style: none;
+ }
+ 
+ .contact-form__label-radio{
+     display: flex;
+     align-items:center ;
+     margin-top: 1.7rem;
+     min-height: 5rem;
+     border: thin solid ;
+     border-radius: 10px;
+ }
+
+ .contact-form__label-radio:active{
+    background-color: var(--Green200);
+    border: 0.19rem solid var(--Green600);
+    outline: none;
+ }
+
+ .contact-form__label-radio:focus{
+    border: 0.19rem solid var(--Green600);
+    outline: none;
+ }
+ 
+ .contact-form__input-radio{
+     width: 17px;
+     height: 17px;
+     margin-left: 2rem;
+     margin-right: 1.5rem;
+     accent-color: var(--GreenIcons);
+ }
+ 
+ .contact-form__label-radio:hover{
+     cursor: pointer;
+ }
+ 
+ .contact-form__textarea{
+     width: 100%;
+     margin-top: 1rem;
+     border-radius: 0.5rem;
+ }
+ 
+ .contact-form__textarea:hover{
+     cursor: pointer;
+ }
+ .contact-form__textarea:focus{
+     border: 0.19rem solid var(--Green600);
+     outline: none;
+ }
+ 
+ .contact-form__label-consent {
+     display: flex;
+     margin-bottom: 3rem;
+ 
+ }
+ .contact-form__label-consent .contact-form__input-consent{
+     width: 1.8rem;
+     margin-right: 1.5rem;
+     accent-color: var(--GreenIcons);
+ }
+
+ .contact-form__label-consent:hover{
+    cursor: pointer;
+ }
+ 
+ .contact-form__submit-button{
+     height: 5rem;
+     border: thin;
+     border-radius: 0.8rem;
+     background-color: var(--Green600);
+     color: var(--White);
+     font-size: 1.6rem;
+ }
+ 
+ .contact-form__submit-button:hover{
+     cursor: pointer;
+     background-color: var(--GreenDark);
+ }
+
+.success-message{
+    align-self: center;
+    position: absolute;
+    top: 4px;
+    height: 7.5rem;
+    width: 80%;
+    min-width: 250px;
+    max-width: 500px;
+    padding: 1rem;
+    color: var(--White);
+    opacity: 1;
+    visibility: visible; /* Mantiene el espacio del elemento */
+    transition: opacity 0.5s ease; /* Transición suave */
+    background-color: var(--Grey900);
+    border-radius: 1.2rem;
+ }
+
+ .invisible{
+    opacity: 0;
+}
+
+.success-message__title .success-message__icon{
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    margin-right: 0.6rem;
+    background-image: url(../assets/images/icon-success-check.svg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    vertical-align: middle;
+}
+
+.success-message__title{
+   margin-bottom: 0.5rem;
+   font-size: 1.5rem;
+}
+.success-message__content{
+    font-size: 1.3rem;
+    font-weight: lighter;
+}
+
+
+ /* 
+ Reestructurando el mensaje de envio (este diseño es para deskop)
+    .success-message{
+    height: 10rem;
+    min-width: 300px;
+    max-width: 500px;
+    padding: 1.8rem;
+    color: var(--White);
+    background-color: var(--Grey900);
+    border-radius: 1.2rem;
+ }
+
+ .success-message__title{
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+}
+
+.success-message__title .success-message__icon{
+    display: inline-block;
+    width: 17px;
+    height: 17px;
+    background-image: url(../assets/images/icon-success-check.svg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    vertical-align: middle;     
+}
+
+.success-message__content{
+    font-size: 1.3rem;
+    font-weight: lighter;
+} */
