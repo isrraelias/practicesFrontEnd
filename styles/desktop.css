@@ -1,0 +1,80 @@
+.contact-form{
+    width: 60%;
+    padding: 40px;
+    margin: 10rem 0;
+    font-size: 1.9rem;
+}
+
+.success-message{
+    top: 18px;
+    height: 8.8rem;
+    width: 30%;
+    min-width: 250px;
+    max-width: 500px;
+    padding: 1.8rem;
+}
+
+.success-message__title{
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+}
+
+.success-message__title .success-message__icon{
+    display: inline-block;
+    width: 17px;
+    height: 17px;
+    background-image: url(../assets/images/icon-success-check.svg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    vertical-align: middle;     
+}
+
+.success-message__content{
+    font-size: 1.4rem;
+    font-weight: lighter;
+} 
+
+.contact-form h2{
+   font-size: 4rem;
+}
+
+.contact-form__input{
+    height: 6rem;
+    font-size: 1.6rem;
+}
+
+.contact-form__names{
+	flex-direction: row;
+      justify-content: space-between;
+}
+
+.contact-form__label-mod{
+    display: inline-block;
+    width: 49%;
+
+}
+
+.contact-form__fieldset{
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.contact-form__label-radio{
+    width: 49%;
+    height: 6rem;
+}
+
+.contact-form__input-radio{
+    width: 20px;
+    height: 20px;
+}
+
+.contact-form__textarea{
+    font-size: 1.6rem;
+}
+
+.contact-form__submit-button{
+   height: 6rem;
+   font-size: 1.9rem
+}

@@ -13,35 +13,42 @@
     rel="stylesheet" />
   <title>Frontend Mentor | Contact form</title>
   <link rel="stylesheet" href="./styles/styles.css" />
+  <link rel="stylesheet" href="./styles/desktop.css" media="screen and (min-width: 1024px)">
 </head>
 
 <body>
   <main class="main-form">
     <form action="" class="contact-form">
-      <h2>Contact Us</h2>
-      <label for="firstName" class="contact-form__label">
-        <p class="contact-form__p">First Name <span class="contact-form__mandatory-convention">*</span></p>
-        <input type="text" id="firstName" name="firstName" required class="contact-form__input" />
-      </label>
-      <label for="lastName" class="contact-form__label">
-        <p class="contact-form__p">Last Name <span class="contact-form__mandatory-convention">*</span></p>
-        <input type="text" id="lastName" name="lastName" required class="contact-form__input" />
-      </label>
+      <div class="success-message invisible">
+        <p class="success-message__title"><span class="success-message__icon"></span> Message Sent!</p>
+        <p class="success-message__content">Thanks for completing the form. We´ll be in touch soon!</p>
+      </div>
+        <h2>Contact Us</h2>
+	<div class = "contact-form__names">
+        <label for="firstName" class="contact-form__label contact-form__label-mod">
+          <p class="contact-form__p">First Name <span class="contact-form__mandatory-convention">*</span></p>
+          <input type="text" id="firstName" name="firstName" required class="contact-form__input" />
+        </label>
+        <label for="lastName" class="contact-form__label contact-form__label-mod">
+          <p class="contact-form__p">Last Name <span class="contact-form__mandatory-convention">*</span></p>
+          <input type="text" id="lastName" name="lastName" required class="contact-form__input" />
+        </label>
+	</div>
       <label for="email" class="contact-form__label">
         <p class="contact-form__p">Email Address <span class="contact-form__mandatory-convention">*</span></p>
         <input type="email" id="email" name="email" required class="contact-form__input" />
       </label>
 
-      <fieldset class="contact-form__fieldset">
+      <fieldset class="contact-form__fieldset" >
         <legend>Query Type <span class="contact-form__mandatory-convention">*</span></legend>
 
         <label for="generalE" class="contact-form__label-radio">
-          <input type="radio" name="queryType" id="generalE" value="G" class="contact-form__input-radio" />
+          <input type="radio" name="queryType" id="generalE" value="G" required class="contact-form__input-radio" />
           General Enquiry 
         </label>
 
         <label for="supportR" class="contact-form__label-radio">
-          <input type="radio" name="queryType" id="supportR" value="S" class="contact-form__input-radio" />
+          <input type="radio" name="queryType" id="supportR" value="S" required class="contact-form__input-radio" />
           Support Request
         </label>
       </fieldset>
@@ -50,16 +57,17 @@
         <p class="contact-form__p">Message <span class="contact-form__mandatory-convention">*</span></p>
         <!-- el atributo row especifica cuantas filas habran visiblemente antes de hacer scroll
         el atributo cols especifica cuantos caracteres habran visiblemente antes de saltar linea-->
-        <textarea name="message" id="message" rows="13" cols="40" class="contact-form__textarea"></textarea>
+        <textarea name="message" id="message" rows="13" cols="40" required class="contact-form__textarea"></textarea>
       </label>
       <label for="consent" class="contact-form__label-consent">
-        <input type="checkbox" class="contact-form__input-consent" />
+        <input type="checkbox" name="consent" id="consent" required class="contact-form__input-consent" />
         <p>I consent to being contacted by the team <span class="contact-form__mandatory-convention">*</span></p>
       </label>
 
-      <input type="submit" name="" id="" value="Submit" class="contact-form__submit-button" />
+      <input type="submit" name="" id="buttonSubmit" value="Submit" class="contact-form__submit-button" />
     </form>
   </main>
+  <script src="./js/script.js"></script>
 </body>
 
 </html>
