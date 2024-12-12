@@ -1,1 +1,0 @@
-hola estoy creando y probando un archivo con el comando nano ?
