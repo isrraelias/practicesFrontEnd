@@ -233,35 +233,6 @@
     display: none;
 }
 
- /* 
- Reestructurando el mensaje de envio (este diseño es para deskop)
-    .success-message{
-    height: 10rem;
-    min-width: 300px;
-    max-width: 500px;
-    padding: 1.8rem;
-    color: var(--White);
-    background-color: var(--Grey900);
-    border-radius: 1.2rem;
- }
-
- .success-message__title{
-    margin-bottom: 1rem;
-    font-size: 1.5rem;
+.inputEmptyColor{
+    border: 1px solid var(--Red)
 }
-
-.success-message__title .success-message__icon{
-    display: inline-block;
-    width: 17px;
-    height: 17px;
-    background-image: url(../assets/images/icon-success-check.svg);
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    vertical-align: middle;     
-}
-
-.success-message__content{
-    font-size: 1.3rem;
-    font-weight: lighter;
-} */

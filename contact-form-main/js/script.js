@@ -40,11 +40,18 @@ for (const option of radioOptions) {
 
 isChecked?validateTmp.push(1):validateTmp.push(0);
 
+
+paintBorderError(firstName);
+paintBorderError(lastName);
+paintBorderError(email);
+paintBorderError(message);
+
 //VALIDA QUE ESTAN LLENOS LOS CAMPOS
 
     if(!validateTmp.some(item => item === 0)){
        messageSuccess.classList.toggle('invisible');
        setTimeout(() => {
+	  formElement.reset();
           messageSuccess.classList.toggle('invisible');
        }, 2000);
      }
@@ -87,4 +94,14 @@ function validationMessageErrorChecked(nodoInput,nodoMsg) {
             return 1;
 
             } 
+}
+
+function paintBorderError(nodo){
+    const inputBorder = nodo.nextElementSibling;
+
+    if(!inputBorder.classList.contains('messageValidationEmpty'))
+        nodo.classList.add('inputEmptyColor');
+    else
+        nodo.classList.remove('inputEmptyColor');
+
 }

@@ -57,33 +57,32 @@
 
 .contact-form__fieldset{
     display: grid;
-    grid-template-rows: 1fr 1fr;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-template-areas: 'tipo tipo'
-                         'radio1 radio2'
+    grid-template-rows: 1fr auto;
+    grid-template-columns: 50% 50%;
+    grid-template-areas: 'radio1 radio2'
                         'error error';
     justify-content: space-between;
-    margin-bottom: 3.5rem;
+    margin-bottom: 2rem;
 }
 
-legend{
-    grid-area: tipo;
-}
 
-legend + .contact-form__label-radio{
-    grid-area: radio1;
+.contact-form__fieldset label:nth-child(3){
+    grid-area: radio2;
+    justify-self: end;
 }
 
 .contact-form__fieldset label:nth-child(2){
-    grid-area: radio2;
+    grid-area: radio1;
 }
 
 #voidQueryType{
     grid-area: error;
+    align-self: center;
+    margin-top: 1.6rem;
 }
 
 .contact-form__label-radio{
-    width: 49%;
+    width: 98%;
     height: 6rem;
 }
 
