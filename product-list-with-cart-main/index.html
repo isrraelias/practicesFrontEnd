@@ -10,25 +10,25 @@
   <link rel="stylesheet" href="./styles/mobile.css">
 </head>
 <body>
-  <h2>Desserts</h2>
+  <h2 class="pageFood__title">Desserts</h2>
   <!-- section sera el contenedor padre de tipo GRID -->
-  <section>
+  <section class="pageFood__items">
     <!-- el article sera el que encierre la tarjeta -->
-    <article>
-      <figure></figure>
-      <button><span></span> Add to cart</button>
+    <article class="pageFood__item">
+      <figure class="item__image"></figure>
+      <button class="item__addCart"><span></span>Add to cart</button>
       <!-- informacion del producto -->
-      <article>
-        <p>wafle</p>
-        <p>waffle with berries</p>
-        <p>$6.50</p>
+      <article class="item__description">
+        <p class="item__type">wafle</p>
+        <p class="item__name">waffle with berries</p>
+        <p class="item__price">$6.50</p>
       </article>
     </article>
   </section>
   <!-- section que pertenece al carro de comprar -->
-  <section>
-    <h2>Your cart <span>(#)</span></h2>
-    <p>Your added items will appear here</p>
+  <section class="cartUser">
+    <h2 class="cartUser__title">Your cart <span>(#)</span></h2>
+    <p class="cartUser__???????">Your added items will appear here</p>
   </section>
 </body>
 </html>
