@@ -23,7 +23,7 @@ html{
 body{
     display: grid;
     grid-template-columns: 20px 1fr 20px;
-    grid-template-rows: 50px 1fr 1fr;
+    grid-template-rows: 50px 1fr 250px;
     height: auto;
     background: var(--Rose-100);
 }
@@ -40,6 +40,34 @@ body{
     grid-row: 2 / 3;
 }
 
+/*CONTENEDOR TARJETA COMIDA*/
+.pageFood__item{
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 10px 150px 25px 25px 80px
+}
+
+.item__image{
+    grid-column: 1 / 1;
+    grid-row: 2 / span 2;
+}
+
+.item__addCart{
+    grid-column: 1 / 1;
+    grid-row: 3 / span 2;
+}
+
+.item__description{
+    grid-column: 1 / 1;
+    grid-row: 5 / span 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+/*FIN CONTENEDOR TARJETA COMIDA*/
+
+/* carrito de compras */
 .cartUser{
     grid-column: 2 / 3;
     grid-row: 3 / 4;
