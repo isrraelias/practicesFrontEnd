@@ -5,15 +5,28 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
 
   <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon-32x32.png">
-  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Karla:ital,wght@0,200..800;1,200..800&family=Red+Hat+Text:ital,wght@0,300..700;1,300..700&display=swap" rel="stylesheet">
   <title>Frontend Mentor | Product list with cart</title>
   <link rel="stylesheet" href="./styles/mobile.css">
 </head>
-<body>
+<body class="container-page">
   <h2 class="pageFood__title">Desserts</h2>
   <!-- section sera el contenedor padre de tipo GRID -->
   <section class="pageFood__items">
-    <!-- el article sera el que encierre la tarjeta -->
+    <!-- el contenedor que encierre la tarjeta -->
+    <article class="pageFood__item">
+      <figure class="item__image"></figure>
+      <button class="item__addCart"><span></span>Add to cart</button>
+      <!-- informacion del producto -->
+      <article class="item__description">
+        <p class="item__type">wafle</p>
+        <p class="item__name">waffle with berries</p>
+        <p class="item__price">$6.50</p>
+      </article>
+    </article>
+    <!-- CLON CLON CLON -->
     <article class="pageFood__item">
       <figure class="item__image"></figure>
       <button class="item__addCart"><span></span>Add to cart</button>

@@ -17,8 +17,30 @@
 
 html{
     font-size: 62.5%;
+    font-family: "Red Hat Text", sans-serif;
 }
 
 body{
+    display: grid;
+    grid-template-columns: 20px 1fr 20px;
+    grid-template-rows: 50px 1fr 1fr;
+    height: auto;
     background: var(--Rose-100);
+}
+
+.pageFood__title{
+    grid-column: 2 / 3;
+    grid-row: 1 / 2;
+    font-size: 3.4rem;
+    color: var(--Rose-900)
+}
+
+.pageFood__items{
+    grid-column: 2 / 3;
+    grid-row: 2 / 3;
+}
+
+.cartUser{
+    grid-column: 2 / 3;
+    grid-row: 3 / 4;
 }
