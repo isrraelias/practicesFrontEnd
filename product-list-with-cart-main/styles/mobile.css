@@ -28,7 +28,7 @@ body{
     margin-block-end: 20px;
     height: auto;
     background: var(--Rose-100);
-    font-size: 1.4rem;
+    font-size: 1.5rem;
 }
 
 .pageFood__title{
@@ -48,7 +48,8 @@ body{
 .pageFood__food-Card{
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-rows: 10px 150px 23px 23px 83px
+    grid-template-rows: 10px 150px 23px 23px 83px;
+    margin-block-start: 8px;
 }
 
 .food-Card__box-image{
@@ -95,7 +96,8 @@ body{
 }
 
 .card-description__type{
-    color: var(--Rose-400);
+    font-size: 1.4rem;
+    color: var(--Rose-500);
 }
 
 .card-description__name{

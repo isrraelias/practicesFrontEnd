@@ -77,3 +77,13 @@ function createCardFood(img,name,category,price){
 }
 
 insertDataFood();
+
+function updateNumberItemsCart() {
+   let cart = document.querySelector('user-cart__title').firstElementChild;
+   const task = JSON.parse(localStorage.getItem('numberItems') || []);
+
+   cart.innerText = task.length;
+    
+
+
+}
