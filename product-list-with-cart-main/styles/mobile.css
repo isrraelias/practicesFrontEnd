@@ -122,11 +122,15 @@ body{
     padding-inline: 20px;
     padding-block-start: 25px;
     background-color: white;
+    border-radius: 12px;
+}
+
+.user-cart_img-background{
     background-image: url(./../assets/images/illustration-empty-cart.svg);
     background-repeat: no-repeat;
     background-position: center;
-    border-radius: 12px;
 }
+
 
 .user-cart__title{
    color: var(--Orange-soft);
