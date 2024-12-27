@@ -1,145 +1,259 @@
 :root{
---Red: hsl(14, 86%, 42%);
---Green: hsl(159, 69%, 38%);
---Rose-50: hsl(20, 50%, 98%);
---Rose-100: hsl(13, 31%, 94%);
---Rose-300: hsl(14, 25%, 72%);
---Rose-400: hsl(7, 20%, 60%);
---Rose-500: hsl(12, 20%, 44%);
---Rose-900: hsl(14, 65%, 9%);
---Orange-soft: hsl(14.35deg 85.98% 41.96%);
-}
+    --Red: hsl(14, 86%, 42%);
+    --Green: hsl(159, 69%, 38%);
+    --Rose-50: hsl(20, 50%, 98%);
+    --Rose-100: hsl(13, 31%, 94%);
+    --Rose-300: hsl(14, 25%, 72%);
+    --Rose-400: hsl(7, 20%, 60%);
+    --Rose-500: hsl(12, 20%, 44%);
+    --Rose-900: hsl(14, 65%, 9%);
+    --Orange-soft: hsl(14.35deg 85.98% 41.96%);
+    }
+    
+    *{
+        box-sizing: border-box;
+        padding: 0;
+        margin: 0;
+    }
+    
+    html{
+        font-size: 62.5%;
+        font-family: "Red Hat Text", sans-serif;
+    }
+    
+    body{
+        display: grid;
+        grid-template-columns: 20px 1fr 20px;
+        /* grid-template-rows: 50px 1fr 275px; */
+        grid-template-rows: 50px 1fr minmax(275px,auto);
+        margin-block-end: 20px;
+        height: auto;
+        background: var(--Rose-100);
+        font-size: 1.5rem;
+    }
+    
+    .pageFood__title{
+        grid-column: 2 / 3;
+        grid-row: 1 / 2;
+        font-size: 3.4rem;
+        color: var(--Rose-900)
+    }
+    
+    .pageFood__items{
+        grid-column: 2 / 3;
+        grid-row: 2 / 3;
+        margin-block-end: 16px;
+    }
+    
+    /*CONTENEDOR TARJETA COMIDA*/
+    .pageFood__food-Card{
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: 10px 150px 23px 23px 83px;
+        margin-block-start: 8px;
+    }
+    
+    .food-Card__box-image{
+        grid-column: 1 / 1;
+        grid-row: 2 / span 2;
+    }
+    
+    .food-Card__image{
+        width: 100%;
+        height: 100%;
+        border-radius: 10px;
+    }
+    
+    .food-Card__button-addCart{
+        grid-column: 1 / 1;
+        grid-row: 3 / span 2;
+        justify-self: center;
+        width: 150px;
+        border-radius: 40px;
+        font-size: 1.4rem;
+        font-weight: bold;
+        color: var(--Rose-900);
+        border: 1px solid var(--Rose-400);
+    }
+    
+    .food-Card__button-addCart span{
+        display: inline-block;
+        width: 20px;
+        height: 20px;
+        background-image: url('./../assets/images/icon-add-to-cart.svg');
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        vertical-align: middle;
+        margin-right: 10px;
+    }
+    
+    .food-Card__description{
+        grid-column: 1 / 1;
+        grid-row: 5 / span 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+    }
+    
+    .card-description__type{
+        font-size: 1.4rem;
+        color: var(--Rose-500);
+    }
+    
+    .card-description__name{
+       color: var(--Rose-900);
+       font-weight: 600;
+    }
+    
+    .card-description__price{
+       color: var(--Orange-soft);
+       font-weight: 600;
+    }
+    
+    /*FIN CONTENEDOR TARJETA COMIDA*/
+    
+    /* carrito de compras */
+    .user-cart{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        /* con elementos en el carro debe irse la propiedad de arriba? */
+        grid-column: 2 / 3;
+        grid-row: 3 / 4;
+        padding-inline: 20px;
+        padding-block-start: 25px;
+        background-color: white;
+        border-radius: 12px;
+    }
+    
+    .user-cart_img-background{
+        background-image: url(./../assets/images/illustration-empty-cart.svg);
+        background-repeat: no-repeat;
+        background-position: center;
+    }
+    
+    
+    .user-cart__title{
+       color: var(--Orange-soft);
+       font-weight: bold;
+    }
+    
+    .user-cart__text-Empty{
+        align-self: center;
+        margin-block-end: 40px;
+        color: var(--Rose-500);
+        font-weight: 500;
+    }
 
-*{
-    box-sizing: border-box;
-    padding: 0;
-    margin: 0;
-}
+    .user-cart__detailItems{
+        display: grid;
+        grid-template-columns: 1fr 40px;
+        grid-template-rows: 40px 45px;
+        border-block-end: 1px solid;
+        border-block-end-color: var(--Rose-100);
+    }
 
-html{
-    font-size: 62.5%;
-    font-family: "Red Hat Text", sans-serif;
-}
+    .detailItems__name{
+        grid-column: 1 / 2;
+        grid-row: 1 / 2;
+        align-self: end;
+        font-weight: bold;
+        color: var(--Rose-900);
+    }
+    
+    .detailItems__prices{
+        grid-column: 1 / 2;
+        grid-row: 2 / 3;
+        padding-block-start: 7px;
+        color: var(--Orange-soft);
+        font-weight: 600;
+    }
 
-body{
-    display: grid;
-    grid-template-columns: 20px 1fr 20px;
-    grid-template-rows: 50px 1fr 275px;
-    margin-block-end: 20px;
-    height: auto;
-    background: var(--Rose-100);
-    font-size: 1.5rem;
-}
+    .detailItems__prices span:nth-child(1){
+        margin-inline-start: 15px;
+        margin-inline-end: 10px;
+        font-weight: 500;
+        color: var(--Rose-300);
+    }
+    
+    .detailItems__prices span:nth-child(2){
+        font-weight: 500;
+        color: var(--Rose-500);
+    }
 
-.pageFood__title{
-    grid-column: 2 / 3;
-    grid-row: 1 / 2;
-    font-size: 3.4rem;
-    color: var(--Rose-900)
-}
+    .detailItems__button{
+        grid-column: 2 / 3;
+        grid-row: 1 / 3;
+        justify-self: center;
+        align-self: center;
+    }
 
-.pageFood__items{
-    grid-column: 2 / 3;
-    grid-row: 2 / 3;
-    margin-block-end: 16px;
-}
+    .buttonCartDelete{
+        display: inline-block;
+        width: 18px;
+        height: 18px;
+        background-image: url(../assets/images/icon-remove-item.svg);
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: auto;
+        border: 1.8px solid var(--Rose-400);
+        border-radius: 50px;
+    }
 
-/*CONTENEDOR TARJETA COMIDA*/
-.pageFood__food-Card{
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: 10px 150px 23px 23px 83px;
-    margin-block-start: 8px;
-}
+    .user-cart__detail-total{
+        display: flex;
+        flex-direction: column;
+        height: 220px;
+        justify-content: space-evenly;
+        
+    }
 
-.food-Card__box-image{
-    grid-column: 1 / 1;
-    grid-row: 2 / span 2;
-}
+    .detail-total__texto-total{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        color: var(--Rose-900);
+    }
+    
+    .detail-total__texto-total span{
+        display: inline-block;
+        /* margin-inline-start: calc(50% - 1px); */
+        font-size: 2.5rem;
+        font-weight: bold;
+    }
 
-.food-Card__image{
-    width: 100%;
-    height: 100%;
-    border-radius: 10px;
-}
+    .detail-total__messageGreen{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 48px;
+        background-color: var(--Rose-50);
+        color: var(--Rose-900);
+        border-radius: 6px;
+        align-items: center;
+    }
 
-.food-Card__button-addCart{
-    grid-column: 1 / 1;
-    grid-row: 3 / span 2;
-    justify-self: center;
-    width: 150px;
-    border-radius: 40px;
-    font-size: 1.4rem;
-    font-weight: bold;
-    color: var(--Rose-900);
-    border: 1px solid var(--Rose-400);
-}
+    .detail-total__messageGreen p{
+        font-size: 1.4rem;
+    }
 
-.food-Card__button-addCart span{
-    display: inline-block;
-    width: 20px;
-    height: 20px;
-    background-image: url('./../assets/images/icon-add-to-cart.svg');
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    vertical-align: middle;
-    margin-right: 10px;
-}
+    .detail-total__messageGreen span{
+        display: inline-block;
+        width: 20px;
+        height: 20px;
+        margin-inline-end: 8px;
+        background-image: url('../assets/images/icon-carbon-neutral.svg');
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: contain;
+    }
 
-.food-Card__description{
-    grid-column: 1 / 1;
-    grid-row: 5 / span 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-}
-
-.card-description__type{
-    font-size: 1.4rem;
-    color: var(--Rose-500);
-}
-
-.card-description__name{
-   color: var(--Rose-900);
-   font-weight: 600;
-}
-
-.card-description__price{
-   color: var(--Orange-soft);
-   font-weight: 600;
-}
-
-/*FIN CONTENEDOR TARJETA COMIDA*/
-
-/* carrito de compras */
-.user-cart{
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    grid-column: 2 / 3;
-    grid-row: 3 / 4;
-    padding-inline: 20px;
-    padding-block-start: 25px;
-    background-color: white;
-    border-radius: 12px;
-}
-
-.user-cart_img-background{
-    background-image: url(./../assets/images/illustration-empty-cart.svg);
-    background-repeat: no-repeat;
-    background-position: center;
-}
-
-
-.user-cart__title{
-   color: var(--Orange-soft);
-   font-weight: bold;
-}
-
-.user-cart__text-Empty{
-    align-self: center;
-    margin-block-end: 40px;
-    color: var(--Rose-500);
-    font-weight: 500;
-}
+    .detail-total__button{
+        height: 45px;
+        font-size: 1.5rem;
+        color: white;
+        border-radius: 25px;
+        border: thin;
+        background-color: var(--Orange-soft);
+    }
