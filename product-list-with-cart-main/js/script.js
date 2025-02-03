@@ -1,6 +1,6 @@
 const buttonAddCart = document.querySelector(".pageFood__items");
 const buttonDeleteCart = document.querySelector('.user-cart');
-let listaItems = [];
+const buttonConfirmed = document.querySelector('.confirm-windows__clearButton');
 
 //EXTRAER LA INFORMACION DEL JSON
 async function getDataFood() {
@@ -17,20 +17,43 @@ un recorrido o bucle y en este caso un */
 }
 
 //inserta los datos recibidos del json
-async function insertDataFood() {
+// async function insertDataFood(typeImg) {
+//   const dataFood = await getDataFood();
+//   dataFood.forEach((item) => {
+//     createCardFood(
+//       item.image.mobile,
+//       item.name,
+//       item.category,
+//       item.price.toFixed(2)
+//     ); //JavaScript interpreta los valores numéricos como Number y elimina los ceros no significativos a la derecha del punto decimal al convertirlos a una cadena
+//   });
+// }
+
+// Inserta los datos recibidos del JSON
+async function insertDataFood(typeImg) {
   const dataFood = await getDataFood();
+
   dataFood.forEach((item) => {
+    // Usamos el tipo de imagen especificado en typeImg
+    const selectedImage = item.image[typeImg];
+
+    if (!selectedImage) {
+      console.error(`El tipo de imagen '${typeImg}' no existe para el item:`, item);
+      return;
+    }
+
     createCardFood(
-      item.image.mobile,
+      selectedImage, // Imagen seleccionada dinámicamente
       item.name,
       item.category,
       item.price.toFixed(2)
-    ); //JavaScript interpreta los valores numéricos como Number y elimina los ceros no significativos a la derecha del punto decimal al convertirlos a una cadena
+    );
   });
 }
 
 //crea la tarjeta de la comida
 function createCardFood(img, name, category, price) {
+  const items = JSON.parse(localStorage.getItem('itemsInCart')) || [];
   //SE CREA ELEMENTOS DE LA TARJETA COMIDA
   const containerItems = document.querySelector(".pageFood__items");
   const foodTarget = document.createElement("article");
@@ -44,6 +67,8 @@ function createCardFood(img, name, category, price) {
   const nameDescription = document.createElement("p");
   const priceDescripction = document.createElement("p");
 
+  let itemName = items.find((item)=> item.id === name.replace(/\s+/g, ''));
+
   //SE ASIGNA LAS CLASES
   foodTarget.className = "pageFood__food-Card";
   imgContainer.className = "food-Card__box-image";
@@ -53,24 +78,38 @@ function createCardFood(img, name, category, price) {
   typeDescripction.className = "card-description__type";
   nameDescription.className = "card-description__name";
   priceDescripction.className = "card-description__price";
-  buttonAdd.innerText = "Add to cart";
+  
+  buttonAdd.dataset.accion = 'agregarPrimario'
+  
   //se llena con el json
   imageFood.src = img;
   typeDescripction.innerText = category;
   nameDescription.innerText = name;//////crear ID?
   priceDescripction.innerText = `$${price}`;
-
+  
   //SE AGREGAN LOS ELEMENTOS
   containerItems.append(foodTarget);
   foodTarget.append(imgContainer);
   imgContainer.append(imageContainerResponsive);
   imageContainerResponsive.append(imageFood);
   foodTarget.append(buttonAdd);
-  buttonAdd.prepend(iconButton);
   foodTarget.append(containerDescription);
   containerDescription.append(typeDescripction);
   containerDescription.append(nameDescription);
   containerDescription.append(priceDescripction);
+  
+  if (itemName !== undefined ) {
+    buttonAdd.innerText = `${itemName.units}`;
+    buttonAdd.insertAdjacentHTML('afterbegin',`<span class='button-addCart__btnAdd' data-accion='agregarSecundario'></span>`);
+    buttonAdd.insertAdjacentHTML('beforeend',`<span class= 'button-addCart__btnDelete' data-accion='eliminar'></span>`);
+    buttonAdd.classList.add('food-Card__button-addCart_with-element')
+    
+  } else {
+    buttonAdd.innerText = "Add to cart";
+    iconButton.className = "button-addCart__icon";
+    buttonAdd.prepend(iconButton);
+  }
+
 }
 
 /*recibe la info a llenar en el carro y actualiza el localStorage */
@@ -90,6 +129,7 @@ function updateItemsCart(containerInfo) {
       updateElementsCart(item.id,item.units, item.price.slice(1));
       //crear funcion que solo modifique la info de ese elemento?
    }
+   
    })
 
    //si no existe lo crea y lo inserta en el array
@@ -108,32 +148,69 @@ function updateItemsCart(containerInfo) {
 
 }
 
+function getObjectFood(id) {
+  const items = JSON.parse(localStorage.getItem('itemsInCart')) || [];
+  return items.filter((item) => item.id === id);
+}
+
 //evento del boton añadir al carrito
 buttonAddCart.addEventListener("click", (event) => {
-  const x = event.target.closest("button");
+  const x = event.target.closest("button") || false;
+  const y = event.target.closest(".button-addCart__btnDelete") || false;
+  const z = event.target.closest(".button-addCart__btnAdd") || false;
+  const accion = event.target.getAttribute('data-accion');  
+  
+  if (y.nodeName === "SPAN" && accion === 'eliminar') {
+    const idElement = x.nextElementSibling.querySelector('.card-description__name');
+    let id = document.getElementById(idElement.textContent.replace(/\s+/g, ''));
+    deleteOneItemCart(idElement.textContent.replace(/\s+/g, ''));
+    modifiqueElementsButton(y);
 
-  if (x.nodeName === "BUTTON") {
-    updateItemsCart(x.nextElementSibling);
+    let itemExists = getObjectFood(idElement.textContent.replace(/\s+/g, ''));
+    console.log(itemExists[0].units);
+    if (itemExists[0].units === 0 ) {
+      deleteItemCart(id);
+    } 
     updateCart();
   }
+  
+  if (z.nodeName === "SPAN" && accion === 'agregarSecundario') {
+    updateItemsCart(x.nextElementSibling);
+    modifiqueElementsButton(z);
+    updateCart();
+  }
+
+  if (x.nodeName === "BUTTON" && accion === 'agregarPrimario') {
+    updateItemsCart(x.nextElementSibling);
+    updateCart();
+    //agregamos clases activas
+    activeElementsStyles(x);
+  }
+
+
 });
 
-//actualiza el # de elementos en el carrito leyendo el localStorage
+//actualiza el # de elementos en el titulo del carrito con el localStorage
 function updateCart() {
   const x = JSON.parse(localStorage.getItem("itemsInCart") || "[]");
   const cartElement =
     document.querySelector(".user-cart__title").firstElementChild;
   const containerCart = document.querySelector(".user-cart");
+  const containerTotalCart = document.querySelector('.user-cart__detail-total');
   const textEmpty = document.querySelector('.user-cart__text-Empty');
 
   //validamos la imagen del carrito vacio
   //con reduce sumamos el # de unidades y lo inicizamos en 0 para cuando no haya elementos
-  let totalUnits = x.reduce((sum,item) => sum + item.units, 0)
+  let totalUnits = x.reduce((sum,item) => sum + item.units, 0);
+
     if (totalUnits == 0) {
-      containerCart.classList.add("user-cart_img-background")
+      containerCart.classList.add("user-cart_img-background");
+      containerTotalCart.classList.add('invisible');
+      textEmpty.classList.remove('invisible');
     } else {
       containerCart.classList.remove("user-cart_img-background");
-      textEmpty.style.display = 'none'
+      containerTotalCart.classList.remove('invisible');
+      textEmpty.classList.add('invisible');
     }
 
     cartElement.textContent = `(${totalUnits})`;
@@ -187,7 +264,7 @@ function refreshCartItems() {
   })
 }
 
-//saca el total del carrito
+//saca el total monetario del carrito
 function totalItemsCart() {
   const items = JSON.parse(localStorage.getItem('itemsInCart')) || [];
 
@@ -203,16 +280,170 @@ function totalItemsCart() {
 }
 
 buttonDeleteCart.addEventListener('click',(event)=>{
-  const x = event.target.closest('span');
+  const x = event.target.closest('span') || '';
 
   if (x.nodeName === "SPAN") {
-    //deleteItemCart(x);
-    console.log(x.afterElementSibling);
+    const numberItems = x.parentNode.previousElementSibling;
+    if (numberItems.textContent.slice(0,1) > 1 ) {
+      deleteOneItemCart(numberItems.id)
+    } else {
+      deleteItemCart(numberItems);
+    } 
   }
 
 });
 
-insertDataFood();
+//borra el itemn recibiendo el array con el item creado en el carrito (contiene id)
+function deleteOneItemCart(itemCart) {
+  const items = JSON.parse(localStorage.getItem('itemsInCart')) || [];
+
+  let x = items.map((item)=> {
+    if(item.id === itemCart){
+      item.units -= 1;
+      updateElementsCart(item.id, item.units, item.price.slice(1));
+    }
+    //recuerda que debes devolver algo al usar map y al usar {} debes usar return
+    return item;
+  })
+
+  localStorage.setItem("itemsInCart", JSON.stringify(x));
+  updateCart();
+}
+
+
+//borra el itemn recibiendo el array con el item creado en el carrito (contiene id)
+//cuando solo hay un elemento
+function deleteItemCart(itemCart) {
+  const items = JSON.parse(localStorage.getItem('itemsInCart')) || [];
+  const itemDelete = itemCart.parentNode;
+
+  let x = items.filter((item)=> {
+    return item.id !== itemCart.id;
+  })
+
+  localStorage.setItem("itemsInCart", JSON.stringify(x));
+
+  itemDelete.remove();
+  updateCart();
+  
+}
+
+function activeElementsStyles(buttonNode) {
+  const items = JSON.parse(localStorage.getItem('itemsInCart')) || [];
+  let idItem = buttonNode.nextElementSibling.querySelector('.card-description__name');
+  idItem = idItem.textContent.replace(/\s+/g, '');
+  //obtenemos el elemento html con la img 
+  const imgNode = buttonNode.previousElementSibling;
+  
+  //con que numero vamos a llenar el texto del boton?
+  //con el valor de units del localS,¿como lo obtengo?
+  //sacando del localS el valor de units mediante el id obtenido
+  let infoItemLocal = items.find((item)=> item.id === idItem)
+  
+  //asignamos el numero al boton
+  buttonNode.innerText = `${infoItemLocal.units}`;
+
+  buttonNode.insertAdjacentHTML('afterbegin',`<span class='button-addCart__btnAdd' data-accion='agregarSecundario'></span>`);
+  buttonNode.insertAdjacentHTML('beforeend',`<span class= 'button-addCart__btnDelete' data-accion='eliminar'></span>`);
+
+  imgNode.classList.add('food-Card__box-image_with-element');
+  buttonNode.classList.add('food-Card__button-addCart_with-element')
+}
+
+function modifiqueElementsButton(buttonNode) {
+  const items = JSON.parse(localStorage.getItem('itemsInCart')) || [];
+  let idItem = buttonNode.parentNode.nextElementSibling.querySelector('.card-description__name');
+  idItem = idItem.textContent.replace(/\s+/g, '');
+  const buttonToModified = buttonNode.parentNode;
+  const imgNode = buttonNode.parentNode.previousElementSibling;
+  let infoItemLocal = items.find((item)=> item.id === idItem);
+
+  if (infoItemLocal.units === 0) {
+    const iconButton = document.createElement("span");
+    iconButton.className = "button-addCart__icon";
+    imgNode.classList.remove('food-Card__box-image_with-element');
+    buttonToModified.classList.remove('food-Card__button-addCart_with-element')
+    buttonToModified.innerText = "Add to cart";
+    buttonToModified.prepend(iconButton);
+
+  }else{
+    buttonToModified.innerText = `${infoItemLocal.units}`;
+    buttonToModified.insertAdjacentHTML('afterbegin',`<span class='button-addCart__btnAdd' data-accion='agregarSecundario'></span>`);
+    buttonToModified.insertAdjacentHTML('beforeend',`<span class= 'button-addCart__btnDelete' data-accion='eliminar'></span>`);
+    buttonNode.classList.add('food-Card__button-addCart_with-element')
+  }  
+}
+
+
+//inserta en la ventana flotante
+//aqui toca volver a combocar la api para sacar el otro tipo de img
+async function insertIntoConfirmWindows(item) {
+  const containerCart = document.querySelector(".confirm-windows__cart");
+  const containerTotalCart = document.querySelector('.confirm-windows__cart-totals');
+  const cart = document.querySelector('.user-cart__detail-total');
+  const price = item.price.slice(1);
+
+  const containerItem = document.createElement('div');
+  const nameItem = document.createElement('p');
+  const detailItem = document.createElement('p');
+  const finalPriceItem = document.createElement('p');
+  const imgItem = document.createElement('img');
+
+  //se agrega el contenido
+  const urlImg = await getImageFood(item.name);
+  console.log(`Aqui va la url para la pantalla flotante ${urlImg}`)
+  imgItem.src = urlImg;
+
+  nameItem.innerText = item.name;
+  detailItem.innerText = `${item.units}x`;
+  detailItem.insertAdjacentHTML('beforeend',`<span>@ $${price}</span>`);
+  finalPriceItem.innerText = `$${(parseFloat(price) * item.units).toFixed(2)}`;
+  // buttonDeleteItem.insertAdjacentHTML('beforeend',`<span class='buttonCartDelete'></span>`);
+
+  //se agregan clases
+  containerItem.className = 'confirm-windows__item';//aqui nos quedamos FELIZ AÑO NUEVO
+  imgItem.className = 'confirm-windows__item-img'
+  nameItem.className = 'confirm-windows__item-name';
+  detailItem.className = 'confirm-windows__item-detail';
+  finalPriceItem.className = 'confirm-windows__item-finalPrice';
+  // buttonDeleteItem.className = 'detailItems__button';
+
+  //se inserta al html
+  containerCart.prepend(containerItem);
+  // cart.before(containerItem);
+  containerItem.prepend(imgItem);
+  containerItem.append(nameItem);
+  containerItem.append(detailItem);
+  containerItem.append(finalPriceItem);
+  // containerItem.append(buttonDeleteItem);
+
+
+}
+
+//funcion que devuelve la img propia de una comida
+//necesito recibir el nombre como tipo id
+async function getImageFood(nameFood) {
+  const dataFood = await getDataFood();//trae todo el objeto json
+  const foodItem = dataFood.find(item => item.name === nameFood);
+  return foodItem ? foodItem.image.thumbnail : null;
+  
+  // const x = dataFood.filter((item)=> item.name === nameFood )
+  // return x.length > 0 ? x[0].image.thumbnail : null;
+}
+
+buttonConfirmed.addEventListener('click',(event)=>{
+  const items = JSON.parse(localStorage.getItem('itemsInCart')) || [];
+
+  if (items.length > 0) {
+    items.forEach((item)=>{
+      insertIntoConfirmWindows(item);
+    })
+  }else{
+    console-log('no hay items en el carro');
+  }
+})
+
+insertDataFood('mobile');
 updateCart();
 refreshCartItems();
 totalItemsCart();

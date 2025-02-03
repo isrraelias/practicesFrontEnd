@@ -76,7 +76,7 @@
         border: 1px solid var(--Rose-400);
     }
     
-    .food-Card__button-addCart span{
+    .button-addCart__icon{
         display: inline-block;
         width: 20px;
         height: 20px;
@@ -87,6 +87,44 @@
         vertical-align: middle;
         margin-right: 10px;
     }
+
+    /* estilos alterado */
+    .food-Card__button-addCart_with-element{
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        background-color: var(--Orange-soft);
+        color: white;
+    }
+
+    .food-Card__box-image_with-element{
+        border: 2px solid;
+        border-color: var(--Orange-soft);
+        border-radius: 10px;
+    }
+
+    .button-addCart__btnAdd{
+        display: inline-block;
+        width: 15px;
+        height: 15px;
+        background-image: url('../assets/images/icon-increment-quantity.svg');
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+    }
+    .button-addCart__btnDelete{
+        display: inline-block;
+        width: 15px;
+        height: 15px;
+        background-image: url('../assets/images/icon-decrement-quantity.svg');
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-position: center;
+        border: 1px solid;
+        border-radius: 20px;
+    }
+
+    /* fin estilos alterado */
     
     .food-Card__description{
         grid-column: 1 / 1;
@@ -256,4 +294,100 @@
         border-radius: 25px;
         border: thin;
         background-color: var(--Orange-soft);
+    }
+
+    /* fin carrito compras */
+
+    /* inicia ventana confirmacion */
+
+    .confirm-windows{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        position: fixed;
+        width: 100%;
+        height: 100%;/*hay que darle algun valor de altura*/
+        margin-block-start: 50px;
+        background-color: white;
+        border-top-left-radius: 25px;
+        border-top-right-radius: 25px;
+        padding-inline: 20px;
+    }
+
+    .confirm-windows__text{
+        grid-column: 2 / 4;
+    }
+
+    .confirm-windows__text span{
+        display: inline-block;
+        width: 50px;
+        height: 50px;
+        background-image: url('../assets/images/icon-order-confirmed.svg');
+
+    }
+    
+    .confirm-windows__text h2{
+        font-size: 45px;
+        line-height: 50px;
+        color: var(--Rose-900);
+    }
+
+    .confirm-windows__text p{
+        color: var(--Rose-400);
+    }
+
+    .confirm-windows__cart{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding-block-start: 23px;
+        padding-block-end: 30px;
+        padding-inline: 23px;
+        /* align-items: center; */
+        background-color: var(--Rose-50);
+        border-radius: 10px;
+    }
+
+    .confirm-windows__item{
+        display: grid;
+        grid-template-rows: 1fr 1fr;
+        grid-template-columns: 0.5fr 1fr 0.5fr;
+        
+    }
+
+    .confirm-windows__item-img{
+        grid-column: 1 / 2;
+        grid-row: 1 / 3;
+    }
+
+    .confirm-windows__item-name{
+        grid-column: 2 / 3;
+        grid-row: 1 / 2;
+    }
+
+    .confirm-windows__item-detail{
+        grid-column: 2 / 3;
+        grid-row: 2 / 3;
+    }
+
+    .confirm-windows__item-finalPrice{
+        grid-column: 3 / 4;
+        grid-row: 1 / 3;
+        align-self: center;
+        color: var(--Rose-900);
+        font-weight: 600;
+    }
+
+    .confirm-windows__clearButton{
+        height: 50px;
+        border-radius: 30px;
+        background-color: var(--Orange-soft);
+        color: white;
+        font-size: 1.5rem;
+        border: thin;
+    }
+
+
+    .invisible{
+        display: none;
     }
