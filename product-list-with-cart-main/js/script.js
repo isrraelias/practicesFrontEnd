@@ -1,6 +1,7 @@
 const buttonAddCart = document.querySelector(".pageFood__items");
 const buttonDeleteCart = document.querySelector('.user-cart');
-const buttonConfirmed = document.querySelector('.confirm-windows__clearButton');
+const buttonConfirmed = document.querySelector('.detail-total__button');
+const buttonNewOrder = document.querySelector('.confirm-windows__clearButton');
 
 //EXTRAER LA INFORMACION DEL JSON
 async function getDataFood() {
@@ -265,18 +266,33 @@ function refreshCartItems() {
 }
 
 //saca el total monetario del carrito
+// function totalItemsCart() {
+//   const items = JSON.parse(localStorage.getItem('itemsInCart')) || [];
+
+//   const prueba = document.querySelector('.detail-total__texto-total');
+//   let valor ;
+
+//   valor = items.reduce((sum,item) => {
+//     return sum + parseFloat(item.price.slice(1)) * item.units
+//   },0)
+
+//   prueba.firstElementChild.innerText = `$${valor.toFixed(2)}`;
+
+// }
+
 function totalItemsCart() {
   const items = JSON.parse(localStorage.getItem('itemsInCart')) || [];
 
-  const prueba = document.querySelector('.detail-total__texto-total');
-  let valor ;
+  const elements = document.querySelectorAll('.detail-total__texto-total');
+  let valor = items.reduce((sum, item) => {
+    return sum + parseFloat(item.price.slice(1)) * item.units;
+  }, 0);
 
-  valor = items.reduce((sum,item) => {
-    return sum + parseFloat(item.price.slice(1)) * item.units
-  },0)
-
-  prueba.firstElementChild.innerText = `$${valor.toFixed(2)}`;
-
+  elements.forEach(element => {
+    if (element.firstElementChild) {
+      element.firstElementChild.innerText = `$${valor.toFixed(2)}`;
+    }
+  });
 }
 
 buttonDeleteCart.addEventListener('click',(event)=>{
@@ -376,6 +392,7 @@ function modifiqueElementsButton(buttonNode) {
 
 
 //inserta en la ventana flotante
+
 //aqui toca volver a combocar la api para sacar el otro tipo de img
 async function insertIntoConfirmWindows(item) {
   const containerCart = document.querySelector(".confirm-windows__cart");
@@ -387,6 +404,7 @@ async function insertIntoConfirmWindows(item) {
   const nameItem = document.createElement('p');
   const detailItem = document.createElement('p');
   const finalPriceItem = document.createElement('p');
+  const contImgItem = document.createElement('div');
   const imgItem = document.createElement('img');
 
   //se agrega el contenido
@@ -402,7 +420,7 @@ async function insertIntoConfirmWindows(item) {
 
   //se agregan clases
   containerItem.className = 'confirm-windows__item';//aqui nos quedamos FELIZ AÑO NUEVO
-  imgItem.className = 'confirm-windows__item-img'
+  contImgItem.className = 'confirm-windows__item-img'
   nameItem.className = 'confirm-windows__item-name';
   detailItem.className = 'confirm-windows__item-detail';
   finalPriceItem.className = 'confirm-windows__item-finalPrice';
@@ -411,12 +429,13 @@ async function insertIntoConfirmWindows(item) {
   //se inserta al html
   containerCart.prepend(containerItem);
   // cart.before(containerItem);
-  containerItem.prepend(imgItem);
+  containerItem.prepend(contImgItem);
+  contImgItem.prepend(imgItem);
   containerItem.append(nameItem);
   containerItem.append(detailItem);
   containerItem.append(finalPriceItem);
   // containerItem.append(buttonDeleteItem);
-
+  totalItemsCart();
 
 }
 
@@ -433,7 +452,9 @@ async function getImageFood(nameFood) {
 
 buttonConfirmed.addEventListener('click',(event)=>{
   const items = JSON.parse(localStorage.getItem('itemsInCart')) || [];
-
+  const ventanaCart = document.querySelector('.confirm-windows');
+  
+  ventanaCart.classList.remove('invisible');
   if (items.length > 0) {
     items.forEach((item)=>{
       insertIntoConfirmWindows(item);
@@ -441,6 +462,19 @@ buttonConfirmed.addEventListener('click',(event)=>{
   }else{
     console-log('no hay items en el carro');
   }
+})
+
+buttonNewOrder.addEventListener('click',()=>{
+  const ventanaCart = document.querySelector('.confirm-windows');
+  const containerCart = document.querySelectorAll(".confirm-windows__item");
+
+  ventanaCart.classList.add('invisible');
+
+
+  containerCart.forEach((item)=>{
+    item.remove();
+  })
+
 })
 
 insertDataFood('mobile');

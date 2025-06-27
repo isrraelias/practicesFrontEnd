@@ -303,7 +303,7 @@
     .confirm-windows{
         display: flex;
         flex-direction: column;
-        justify-content: space-evenly;
+        justify-content: space-between;
         position: fixed;
         width: 100%;
         height: 100%;/*hay que darle algun valor de altura*/
@@ -312,6 +312,8 @@
         border-top-left-radius: 25px;
         border-top-right-radius: 25px;
         padding-inline: 20px;
+        overflow-y: auto;
+        max-height: calc(100vh - 50px);
     }
 
     .confirm-windows__text{
@@ -340,34 +342,60 @@
         display: flex;
         flex-direction: column;
         justify-content: space-between;
+        /* flex-grow: 1;
+        overflow-y: auto; */
         padding-block-start: 23px;
         padding-block-end: 30px;
         padding-inline: 23px;
-        /* align-items: center; */
         background-color: var(--Rose-50);
         border-radius: 10px;
     }
 
     .confirm-windows__item{
         display: grid;
-        grid-template-rows: 1fr 1fr;
+        grid-template-rows: 35px 35px;
         grid-template-columns: 0.5fr 1fr 0.5fr;
+        
+        padding-block-end: 7px;
+        margin-block-end: 15px;
+        border-bottom: 2px solid var(--Rose-100);
         
     }
 
     .confirm-windows__item-img{
         grid-column: 1 / 2;
         grid-row: 1 / 3;
+
+        & img{
+            width: 60px;
+            height: 60px;
+            border-radius: 8px;
+        }
     }
 
     .confirm-windows__item-name{
         grid-column: 2 / 3;
         grid-row: 1 / 2;
+        color: var(--Rose-900);
+        font-weight: 600;
+        padding-block-start: 5px;
+        /* impedimos que se muestre el texto en doble linea*/
+        white-space: nowrap;
+        /* controlamos el overflow */
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
 
     .confirm-windows__item-detail{
         grid-column: 2 / 3;
         grid-row: 2 / 3;
+        color: var(--Orange-soft);
+    }
+
+    .confirm-windows__item-detail span{
+        display: inline-block;
+        padding-inline-start: 15px;
+        color: var(--Rose-400);
     }
 
     .confirm-windows__item-finalPrice{
