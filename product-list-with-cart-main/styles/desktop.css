@@ -1,0 +1,12 @@
+body{
+    grid-template-columns: 40px 3fr 1fr 40px;
+    grid-template-rows: 70px 1fr;
+}
+
+/* limitar el alto del carro */
+.user-cart{
+    grid-column: 3 / 4;
+    grid-row: 2 / 4;
+    min-height: 100px;
+    justify-content: start;
+}

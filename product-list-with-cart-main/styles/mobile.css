@@ -308,6 +308,7 @@
         width: 100%;
         height: 100%;/*hay que darle algun valor de altura*/
         margin-block-start: 50px;
+        padding-block-start:50px;
         background-color: white;
         border-top-left-radius: 25px;
         border-top-right-radius: 25px;
@@ -318,6 +319,7 @@
 
     .confirm-windows__text{
         grid-column: 2 / 4;
+        margin-block-end: 25px;
     }
 
     .confirm-windows__text span{
@@ -406,8 +408,14 @@
         font-weight: 600;
     }
 
+    .confirm-windows__button{
+        margin-block-start: 30px;
+        margin-block-end: 15px;
+    }
+
     .confirm-windows__clearButton{
         height: 50px;
+        width: 100%;
         border-radius: 30px;
         background-color: var(--Orange-soft);
         color: white;

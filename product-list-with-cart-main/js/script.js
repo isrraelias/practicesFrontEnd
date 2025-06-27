@@ -8,7 +8,8 @@ async function getDataFood() {
 /*La naturaleza de la información que traemos nos obliga a acceder a dicha información mediante
 un recorrido o bucle y en este caso un */
   try {
-    const data = await fetch("./../data.json");
+    // const data = await fetch("./../data.json");
+    const data = await fetch('data.json');
     const dataFood = await data.json();
     return dataFood;
     //retornamos una promesa
