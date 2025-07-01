@@ -1,12 +1,23 @@
 body{
     grid-template-columns: 40px 3fr 1fr 40px;
-    grid-template-rows: 70px 1fr;
+    grid-template-rows: 110px minmax(270px,auto) 1fr;
 }
 
-/* limitar el alto del carro */
+.pageFood__title{
+    align-self: end;
+}
+
+.pageFood__items{
+    grid-column: 2 / 3;
+    grid-row: 2 / 4;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
 .user-cart{
     grid-column: 3 / 4;
-    grid-row: 2 / 4;
-    min-height: 100px;
+    grid-row: 2 / 3;
+    /* min-height: 100px; */
     justify-content: start;
 }
