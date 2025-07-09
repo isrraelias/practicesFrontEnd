@@ -1,5 +1,5 @@
 body{
-    grid-template-columns: 40px 3fr 1fr 40px;
+    grid-template-columns: 85px 3fr 1fr 85px;
     grid-template-rows: 110px minmax(270px,auto) 1fr;
 }
 
@@ -13,6 +13,7 @@ body{
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
+    padding-inline-end: 25px;
 }
 
 .user-cart{
