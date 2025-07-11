@@ -300,6 +300,18 @@
 
     /* inicia ventana confirmacion */
 
+    .confirm-windows__overlay{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4); /*OSCURECE EL FONDO SIN BLOQUEARLO COMPLETAMENTE*/
+    /*backdrop-filter: blur(2px);           desenfoque */
+    z-index: 1000;/*asegura que este por encima del resto*/
+    display: none; /*inicialmente invisible*/
+    }
+
     .confirm-windows{
         display: flex;
         flex-direction: column;
@@ -426,4 +438,8 @@
 
     .invisible{
         display: none;
+    }
+
+    .visible{
+        display: flex;
     }

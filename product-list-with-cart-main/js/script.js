@@ -45,7 +45,8 @@ async function insertDataFood(typeImg) {
     }
 
     createCardFood(
-      selectedImage, // Imagen seleccionada dinámicamente
+      //selectedImage, // Imagen seleccionada dinámicamente
+      item.image, // Usamos la imagen completa del objeto
       item.name,
       item.category,
       item.price.toFixed(2)
@@ -62,6 +63,9 @@ function createCardFood(img, name, category, price) {
   const imgContainer = document.createElement("figure");
   const imageContainerResponsive = document.createElement("picture");
   const imageFood = document.createElement("img");
+  const imageResponsiveMbl = document.createElement("source");
+  const imageResponsiveWds = document.createElement("source");
+  const imageResponsiveTbl = document.createElement("source");
   const buttonAdd = document.createElement("button");
   const iconButton = document.createElement("span");
   const containerDescription = document.createElement("div");
@@ -83,8 +87,16 @@ function createCardFood(img, name, category, price) {
   
   buttonAdd.dataset.accion = 'agregarPrimario'
   
+  //se llena los atributos
+  imageResponsiveWds.setAttribute("media", "(min-width: 1024px)");
+  imageResponsiveWds.setAttribute("srcset", img.desktop);
+  imageResponsiveMbl.setAttribute("media", "(min-width: 768px)");
+  imageResponsiveMbl.setAttribute("srcset", img.tablet);
+  imageResponsiveTbl.setAttribute("media", "(min-width: 480px)");
+  imageResponsiveTbl.setAttribute("srcset", img.mobile);
+
   //se llena con el json
-  imageFood.src = img;
+  imageFood.src = img.mobile;
   typeDescripction.innerText = category;
   nameDescription.innerText = name;//////crear ID?
   priceDescripction.innerText = `$${price}`;
@@ -93,6 +105,8 @@ function createCardFood(img, name, category, price) {
   containerItems.append(foodTarget);
   foodTarget.append(imgContainer);
   imgContainer.append(imageContainerResponsive);
+  imageContainerResponsive.append(imageResponsiveWds);
+  imageContainerResponsive.append(imageResponsiveMbl);
   imageContainerResponsive.append(imageFood);
   foodTarget.append(buttonAdd);
   foodTarget.append(containerDescription);
@@ -391,6 +405,11 @@ function modifiqueElementsButton(buttonNode) {
   }  
 }
 
+//borra todos los items del carrito
+function deleteAllItemsCart() {
+  const items = JSON.parse(localStorage.getItem('itemsInCart')) || [];
+  const containerCart = document.querySelector(".user-cart__detailItems");
+}
 
 //inserta en la ventana flotante
 
@@ -453,7 +472,10 @@ async function getImageFood(nameFood) {
 
 buttonConfirmed.addEventListener('click',(event)=>{
   const items = JSON.parse(localStorage.getItem('itemsInCart')) || [];
+  const overlay = document.querySelector('.confirm-windows__overlay');
   const ventanaCart = document.querySelector('.confirm-windows');
+
+  overlay.classList.add('visible');
   
   ventanaCart.classList.remove('invisible');
   if (items.length > 0) {
@@ -466,12 +488,15 @@ buttonConfirmed.addEventListener('click',(event)=>{
 })
 
 buttonNewOrder.addEventListener('click',()=>{
+  const ventanaOverlay = document.querySelector('.confirm-windows__overlay');
   const ventanaCart = document.querySelector('.confirm-windows');
   const containerCart = document.querySelectorAll(".confirm-windows__item");
 
+  ventanaOverlay.classList.remove('visible');
+  ventanaOverlay.classList.add('invisible');
   ventanaCart.classList.add('invisible');
 
-
+//Quita los items del carrito de la ventana flotante
   containerCart.forEach((item)=>{
     item.remove();
   })
