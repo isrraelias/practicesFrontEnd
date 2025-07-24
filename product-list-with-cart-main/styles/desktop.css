@@ -27,7 +27,7 @@ body{
     grid-column: 3 / 4;
     grid-row: 2 / 3;
     /* min-height: 100px; */
-    justify-content: start;
+    /* justify-content: start; */
     margin-block-start: -40px;
 }
 

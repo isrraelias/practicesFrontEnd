@@ -407,9 +407,31 @@ function modifiqueElementsButton(buttonNode) {
 
 //borra todos los items del carrito
 function deleteAllItemsCart() {
-  const items = JSON.parse(localStorage.getItem('itemsInCart')) || [];
-  const containerCart = document.querySelector(".user-cart__detailItems");
+  const containerCart = document.querySelectorAll(".user-cart__detailItems");
+  const buttonItems = document.querySelectorAll('.button-addCart__btnDelete');
+  
+  containerCart.forEach(nodo => {
+    nodo.remove();
+  });
+  
+  //limpia el localStorage
+  localStorage.removeItem('itemsInCart');
+  updateCart();
+
+  buttonItems.forEach((item)=>{
+    const imgNode = item.parentNode.previousElementSibling;
+    const buttonToModified = item.parentNode;
+    
+    imgNode.classList.remove('food-Card__box-image_with-element');
+    buttonToModified.classList.remove('food-Card__button-addCart_with-element')
+    buttonToModified.innerText = "Add to cart";
+    const iconButton = document.createElement("span");
+    iconButton.className = "button-addCart__icon";
+    buttonToModified.prepend(iconButton);
+  })
 }
+
+  //modifiqueElementsButton(item);  
 
 //inserta en la ventana flotante
 
@@ -500,6 +522,8 @@ buttonNewOrder.addEventListener('click',()=>{
   containerCart.forEach((item)=>{
     item.remove();
   })
+
+  deleteAllItemsCart();
 
 })
 
