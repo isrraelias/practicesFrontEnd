@@ -7,6 +7,7 @@
 --Rose-400: hsl(7, 20%, 60%);
 --Rose-500: hsl(12, 20%, 44%);
 --Rose-900: hsl(14, 65%, 9%);
+--Orange-soft: hsl(14.35deg 85.98% 41.96%);
 }
 
 *{
@@ -23,9 +24,11 @@ html{
 body{
     display: grid;
     grid-template-columns: 20px 1fr 20px;
-    grid-template-rows: 50px 1fr 250px;
+    grid-template-rows: 50px 1fr 275px;
+    margin-block-end: 20px;
     height: auto;
     background: var(--Rose-100);
+    font-size: 1.4rem;
 }
 
 .pageFood__title{
@@ -38,37 +41,99 @@ body{
 .pageFood__items{
     grid-column: 2 / 3;
     grid-row: 2 / 3;
+    margin-block-end: 16px;
 }
 
 /*CONTENEDOR TARJETA COMIDA*/
-.pageFood__item{
+.pageFood__food-Card{
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-rows: 10px 150px 25px 25px 80px
+    grid-template-rows: 10px 150px 23px 23px 83px
 }
 
-.item__image{
+.food-Card__box-image{
     grid-column: 1 / 1;
     grid-row: 2 / span 2;
 }
 
-.item__addCart{
-    grid-column: 1 / 1;
-    grid-row: 3 / span 2;
+.food-Card__image{
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
 }
 
-.item__description{
+.food-Card__button-addCart{
+    grid-column: 1 / 1;
+    grid-row: 3 / span 2;
+    justify-self: center;
+    width: 150px;
+    border-radius: 40px;
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: var(--Rose-900);
+    border: 1px solid var(--Rose-400);
+}
+
+.food-Card__button-addCart span{
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    background-image: url('./../assets/images/icon-add-to-cart.svg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    vertical-align: middle;
+    margin-right: 10px;
+}
+
+.food-Card__description{
     grid-column: 1 / 1;
     grid-row: 5 / span 1;
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
+    justify-content: space-evenly;
+}
+
+.card-description__type{
+    color: var(--Rose-400);
+}
+
+.card-description__name{
+   color: var(--Rose-900);
+   font-weight: 600;
+}
+
+.card-description__price{
+   color: var(--Orange-soft);
+   font-weight: 600;
 }
 
 /*FIN CONTENEDOR TARJETA COMIDA*/
 
 /* carrito de compras */
-.cartUser{
+.user-cart{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     grid-column: 2 / 3;
     grid-row: 3 / 4;
+    padding-inline: 20px;
+    padding-block-start: 25px;
+    background-color: white;
+    background-image: url(./../assets/images/illustration-empty-cart.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+    border-radius: 12px;
+}
+
+.user-cart__title{
+   color: var(--Orange-soft);
+   font-weight: bold;
+}
+
+.user-cart__text-Empty{
+    align-self: center;
+    margin-block-end: 40px;
+    color: var(--Rose-500);
+    font-weight: 500;
 }
