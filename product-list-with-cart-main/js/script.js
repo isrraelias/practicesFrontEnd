@@ -390,30 +390,15 @@ function totalItemsCart() {
 
 buttonDeleteCart.addEventListener('click',(event)=>{
   const x = event.target.closest('span') || '';
-  const itemsNameList = document.querySelectorAll('.card-description__name');
-  let buttonToModified;
 
   if (x.nodeName === "SPAN") {
     const numberItems = x.parentNode.previousElementSibling;
-    const nameElement = x.parentNode.parentNode.querySelector('.detailItems__name');
-
-    //obtengo el nodo de la lista de items
-    itemsNameList.forEach(item =>{
-    if(item.textContent === nameElement.textContent){
-      buttonToModified = item.parentNode.previousElementSibling.querySelector('.button-addCart__btnDelete');
-    }
-    })
-
     if (numberItems.textContent.slice(0,1) > 1 ) {
       deleteOneItemCart(numberItems.id)
-      modifiqueElementsButton(buttonToModified);
     } else {
       deleteItemCart(numberItems);
-      modifiqueElementsButton(buttonToModified);
     } 
   }
-
-
 
 });
 
@@ -482,7 +467,7 @@ function modifiqueElementsButton(buttonNode) {
   const imgNode = buttonNode.parentNode.previousElementSibling;
   let infoItemLocal = items.find((item)=> item.id === idItem);
 
-  if (!infoItemLocal || infoItemLocal.units === 0 || infoItemLocal.units === undefined ) {
+  if (infoItemLocal.units === 0) {
     const iconButton = document.createElement("span");
     iconButton.className = "button-addCart__icon";
     imgNode.classList.remove('food-Card__box-image_with-element');
