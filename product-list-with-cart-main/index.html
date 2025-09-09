@@ -14,55 +14,46 @@
     rel="stylesheet">
   <title>Frontend Mentor | Product list with cart</title>
   <link rel="stylesheet" href="./styles/mobile.css">
+  <link rel="stylesheet" href="./styles/desktop.css" media="screen and (min-width: 1024px)">
+
 </head>
 
 <body class="pageFood">
   <h2 class="pageFood__title">Desserts</h2>
   <!-- section sera el contenedor padre de tipo GRID -->
   <section class="pageFood__items">
-
-    <!-- el contenedor tarjeta -->
-    <article class="pageFood__food-Card">
-      <!-- el contenedor imagen -->
-      <figure class="food-Card__box-image">
-        <picture>
-          <img class='food-Card__image' src='./assets/images/image-baklava-mobile.jpg'>
-        </picture>
-      </figure>
-      <!-- fin contenedor tarjeta -->
-      <button class="food-Card__button-addCart"><span></span>Add to Cart</button>
-      <!-- informacion del producto -->
-      <div class="food-Card__description">
-        <p class="card-description__type">Waffle</p>
-        <p class="card-description__name">Waffle with B6erries</p>
-        <p class="card-description__price">$6.50</p>
-      </div>
-    </article>
-
-    <!-- CLON CLON CLON -->
-    <article class="pageFood__food-Card">
-      <!-- el contenedor imagen -->
-      <figure class="food-Card__box-image">
-        <picture>
-          <img class='food-Card__image' src='./assets/images/image-baklava-mobile.jpg'>
-        </picture>
-      </figure>
-      <!-- fin contenedor tarjeta -->
-      <button class="food-Card__button-addCart"><span></span>Add to Cart</button>
-      <!-- informacion del producto -->
-      <article class="food-Card__description">
-        <p class="card-description__type">Waffle</p>
-        <p class="card-description__name">Waffle with Berries</p>
-        <p class="card-description__price">$6.50</p>
-      </article>
-    </article>
   </section>
   <!-- section que pertenece al carro de comprar -->
   <section class="user-cart">
     <h2 class="user-cart__title">Your Cart <span>(#)</span></h2>
     <p class="user-cart__text-Empty">Your added items will appear here</p>
+    <div class="user-cart__detail-total">
+      <p class="detail-total__texto-total">Order Total <span>$$</span></p>
+      <aside class="detail-total__messageGreen">
+        <span></span><p>This is a <b>carbon-neutral</b> delivery</p>
+      </aside>
+      <button class="detail-total__button">Confirm Order</button>
+    </div>
   </section>
+  <!-- ventana flotante de confirmacion -->
+  <div class="confirm-windows__overlay">
+    <section class="confirm-windows invisible">
+      <div class="confirm-windows__text">
+        <span></span>
+        <h2>Order Confirmed</h2>
+        <p>We hope you enjoy your food!</p>
+      </div>
+      <div class="confirm-windows__cart">
+        <div class="confirm-windows__cart-totals">
+          <p class="detail-total__texto-total">Order Total <span>$$</span></p>
+        </div>
+      </div>
+      <div class="confirm-windows__button">
+        <button class="confirm-windows__clearButton">Start New Order</button>
+      </div>
+    </section>
+  </div>
   <script src="./js/script.js"> </script>
 </body>
 
-</html>
+</html> 

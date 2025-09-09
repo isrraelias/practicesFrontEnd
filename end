@@ -1,0 +1,102 @@
+[33mcommit d5dc32d41975c71bc298bc956baaa60c30ccc9fa[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmaster[m[33m)[m
+Author: atemnPC <isrraelias2@gmail.com>
+Date:   Sat Dec 21 20:24:56 2024 -0500
+
+    Lectura y llenado de los itemns de comida desde el js
+
+[33mcommit 5aa0dc7957d6768722f7293a5f1ec7c1f8e1c5a2[m[33m ([m[1;31morigin/master[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: atemnPC <isrraelias2@gmail.com>
+Date:   Mon Dec 16 21:57:17 2024 -0500
+
+    forma del esqueleto grid parte 1
+
+[33mcommit 70c5c82e53748d0c93720d970ccf94cb186f3acf[m
+Author: atemnPC <isrraelias2@gmail.com>
+Date:   Sun Dec 15 19:55:35 2024 -0500
+
+    clases del esqueleto
+
+[33mcommit 0f7a2d5e04358bdb7b12ed69b0a2eabc12765db3[m
+Author: atemnPC <isrraelias2@gmail.com>
+Date:   Sun Dec 15 19:43:34 2024 -0500
+
+    Esqueleto del nuevo proyecto
+
+[33mcommit e5347ce296de4e8a9d1c0bc300436c691f29a9eb[m
+Author: atemnPC <isrraelias2@gmail.com>
+Date:   Thu Dec 12 20:00:10 2024 -0500
+
+    le damos ultimos ajustes de estilo y validacions js
+
+[33mcommit 72e2fb91f69daf20f1bd97dea565aece9bc13c9a[m
+Author: Elias Manjarrez <44526740+isrraelias@users.noreply.github.com>
+Date:   Thu Dec 12 19:39:12 2024 -0500
+
+    Create README.md
+
+[33mcommit ca39ead4b6b1b084815b5ecbe9e50a13f579ba62[m
+Author: atemnLaptop <isrraelias2@gmail.com>
+Date:   Wed Dec 11 23:58:58 2024 -0500
+
+    adiciona js con mayor interactividad al tener campos vacios
+
+[33mcommit 87afc82a569d3c048853514332d51652b056f4da[m
+Merge: a106cb2 20c772a
+Author: atemnLaptop <isrraelias2@gmail.com>
+Date:   Mon Dec 9 23:30:55 2024 -0500
+
+    sincronizando los cambios
+
+[33mcommit a106cb2d93eed2307e1bbb278335ce1e3fabe659[m
+Author: atemnLaptop <isrraelias2@gmail.com>
+Date:   Mon Dec 9 23:05:58 2024 -0500
+
+    estilo desktop final 2
+
+[33mcommit 4c7e97bba7dbf2edfa45e39bf9d017bfc21f67b4[m
+Author: atemnLaptop <isrraelias2@gmail.com>
+Date:   Mon Dec 9 23:05:22 2024 -0500
+
+    estilo desktop final
+
+[33mcommit 20c772af2469990d9723857341e65d1203728ac2[m
+Author: atemnPC <isrraelias2@gmail.com>
+Date:   Mon Dec 9 14:19:39 2024 -0500
+
+    dimension a desktop
+
+[33mcommit 525a915e5d3f93a599ea7121bc61f988baf5eece[m
+Author: atemnPC <isrraelias2@gmail.com>
+Date:   Sat Dec 7 20:32:18 2024 -0500
+
+    Se agrega interactividad con el mensaje de exito
+
+[33mcommit 743ac1299c8e58a956de703d862f460ea91c847c[m
+Author: atemnPC <isrraelias2@gmail.com>
+Date:   Sat Dec 7 19:08:44 2024 -0500
+
+    estilo del mensaje listo
+
+[33mcommit b2a70f6a395f5e07e40fc3e07cc989311fac198a[m
+Author: atemnPC <isrraelias2@gmail.com>
+Date:   Sun Nov 24 13:59:06 2024 -0500
+
+    se adiciona cuadro exito
+
+[33mcommit c69ccffc5b5e8466417f8546f5c4ff0106565a9f[m
+Author: atemnPC <isrraelias2@gmail.com>
+Date:   Thu Nov 21 01:17:46 2024 -0500
+
+    primera carga
+
+[33mcommit 3147295673ac665680a5fda7ccc6628f3198d5c2[m
+Author: Elias Manjarrez <44526740+isrraelias@users.noreply.github.com>
+Date:   Tue Nov 19 22:15:32 2024 -0500
+
+    Initial commit
+
+[33mcommit cd05ee4790d9e4e8e4557a399e0256c9b4cba8c6[m
+Author: atemnLaptop <isrraelias2@gmail.com>
+Date:   Tue Nov 19 16:11:18 2024 -0500
+
+    rep practica contact-form

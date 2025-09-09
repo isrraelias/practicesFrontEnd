@@ -1,0 +1,49 @@
+body{
+    grid-template-columns: 90px 2.2fr 1fr 90px;
+    grid-template-rows: 110px minmax(270px,auto) 1fr;
+}
+
+.pageFood__title{
+    align-self: end;
+}
+
+.pageFood__items{
+    grid-column: 2 / 3;
+    grid-row: 2 / 4;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding-inline-end: 25px;
+}
+
+.pageFood__food-Card{
+    grid-template-columns: 260px;
+    grid-template-rows: 10px 200px 23px 23px 83px;
+    /* se debe actualizar el grid de las filas para 
+    aumentar el tamaño del contenedor */
+}
+
+.user-cart{
+    grid-column: 3 / 4;
+    grid-row: 2 / 3;
+    /* min-height: 100px; */
+    /* justify-content: start; */
+    margin-block-start: -40px;
+}
+
+.confirm-windows__overlay{
+    justify-content: center;
+    align-items: center;
+}
+
+.confirm-windows{
+    /* justify-self: center;
+    align-self: center; */
+    width: 500px;
+    height: auto;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+}
+
