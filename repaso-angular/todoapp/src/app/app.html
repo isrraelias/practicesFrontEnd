@@ -1,17 +1,1 @@
-<main>
-  <h1>prueba: {{msg}}</h1>
-  <ul>
-    <!-- forma antigua de hacer un ngFor (angular 15) -->
-    <!-- <li *ngFor="let tarea of tareas">
-      {{tarea}}
-    </li> -->
-
-    <!-- nueva forma de hacer un ngFor (angular 16)
-         no se necesita importar nada -->
-    @for(tarea of tareas; track tarea){
-      <li>
-        {{tarea}}
-      </li>
-    }
-  </ul>
-</main>
+ <router-outlet></router-outlet>
