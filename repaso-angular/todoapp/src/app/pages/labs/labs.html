@@ -1,15 +1,33 @@
-  <h1>prueba: {{msg}}</h1>
-  <ul>
-    <!-- forma antigua de hacer un ngFor (angular 15) -->
-    <!-- <li *ngFor="let tarea of tareas">
-      {{tarea}}
-    </li> -->
+<h1>prueba: {{msg}}</h1>
+<h2>Forma clásica</h2>
+<p>Se importa en el .ts CommonModule de @angular/common</p>
+<p>y se lo llama en el imports: [CommonModule]</p>
 
-    <!-- nueva forma de hacer un ngFor (angular 16)
+<ul>
+  <!-- forma antigua de hacer un ngFor (angular 15) -->
+  <li *ngFor="let tarea of tareas">
+    {{tarea}}
+  </li>
+</ul>
+
+<h2>Forma nueva</h2>
+<p>No se necesita importar nada en el .ts</p>
+<pre><code>
+  {{codigo}}
+</code></pre>
+
+<ul>
+  <!-- nueva forma de hacer un ngFor (angular 16)
          no se necesita importar nada -->
-    @for(tarea of tareas; track tarea){
-      <li>
-        {{tarea}}
-      </li>
-    }
-  </ul>
+  @for(tarea of tareas; track tarea){
+  <li>
+    {{tarea}}
+  </li>
+  }
+</ul>
+
+<hr>
+<h2>Property binding</h2>
+<p>El botón se deshabilita si estado es false</p>
+<button [disabled]="estado">Button</button>
+<button >Button2</button>
