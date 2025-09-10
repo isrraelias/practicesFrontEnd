@@ -7,8 +7,9 @@ import { CommonModule } from '@angular/common';
   templateUrl: './labs.html',
   styleUrl: './labs.css'
 })
+
 export class Labs {
-  msg: string = 'hola mundo';
+  msg: string = 'Prueba';
   tareas : Array<string> = ['tarea 1 - Ag', 'tarea 2 - Ag', 'tarea 3 - Ag'];
   codigo: string = 
   `<ul>
@@ -19,4 +20,16 @@ export class Labs {
     }
   </ul>`;
   estado: boolean = true;
+
+  buttonPrueba() {
+    let button = document.querySelector('.button-prueba');
+    let texto = document.createElement('p');
+    texto.innerText = 'clickeaste el botón';
+    console.log('click');
+    if (button) {
+      button.after(texto);
+    }
+
+  }
+
 }
