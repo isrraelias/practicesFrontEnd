@@ -31,3 +31,8 @@
 <p>El botón se deshabilita si estado es false</p>
 <button [disabled]="estado">Button</button>
 <button (click)="buttonPrueba()" class="button-prueba">Button2</button>
+<p>(change)</p>
+<input type="number" (change)="onChange($event)" />
+<h2>Signal</h2>
+<input type="text"  [value]="(ejemploSignal())" (change)="changeInput($event)"/>
+<p>Texto = {{ejemploSignal()}}</p>

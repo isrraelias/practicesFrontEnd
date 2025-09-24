@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -20,6 +20,9 @@ export class Labs {
     }
   </ul>`;
   estado: boolean = true;
+  ejemploSignal = signal('');
+  //ejemploSignal = signal<string>; //otra forma de definir el tipo
+
 
   buttonPrueba() {
     let button = document.querySelector('.button-prueba');
@@ -30,6 +33,16 @@ export class Labs {
       button.after(texto);
     }
 
+  }
+
+  onChange(event: Event){
+    console.log(event);
+  }
+
+  changeInput(event: Event){
+    const element = event.target as HTMLInputElement;
+    this.ejemploSignal.set(element.value);
+    console.log(this.ejemploSignal());
   }
 
 }
