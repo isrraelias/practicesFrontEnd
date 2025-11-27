@@ -1,6 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { Component, signal } from '@angular/core';
 
+import { Task } from '../../models/task.model';
+
 
 @Component({
   selector: 'app-home',
@@ -9,11 +11,12 @@ import { Component, signal } from '@angular/core';
   styleUrl: './home.css'
 })
 export class Home {
-  taskList = signal([
-    'Learn Angular'
-    ,'Buy a unicorn' 
-    , 'Make a dish']);
-
+  taskList = signal<Task[]>(
+  [  { id: 1, title: 'Learn Angular Signals', completed: false },
+     { id: 2, title: 'Build a Todo App', completed: false }
+  ]
+  );
+ 
   showTasks(Event: Event) {
     return this.taskList();
   }
@@ -21,9 +24,20 @@ export class Home {
   changeList(event: Event){
     const element = event.target as HTMLInputElement;
     const newTask = element.value;
-    this.taskList.update((taskList) => {
-     return [...taskList,newTask]
-    });
+    this.addTask(newTask);
+    // this.taskList.update((taskList) => {
+    //  return [...taskList,newTask]
+    // });
+    element.value = '';
+  }
+
+  addTask(newTaskTitle: string) {
+    const newTask: Task = {
+      id: this.taskList().length + 1,
+      title: newTaskTitle,
+      completed: false
+    }
+    this.taskList.update((currentTasks) => [...currentTasks, newTask]);
   }
 
   deleteTask(index: number){
