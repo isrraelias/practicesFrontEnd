@@ -36,3 +36,14 @@
 <h2>Signal</h2>
 <input type="text"  [value]="(ejemploSignal())" (change)="changeInput($event)"/>
 <p>Texto = {{ejemploSignal()}}</p>
+
+<div class="gatitos">
+  <h2>APIS GATITOS</h2>
+  <section class="box_cats">
+    @for(item of gatoEjemplo(); track item){
+       <img [src]="item" alt="gatito"/>
+    }
+    
+  </section>
+  <button (click)="getGatito()">Obtener Gatito</button>
+</div>

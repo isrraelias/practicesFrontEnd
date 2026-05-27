@@ -23,6 +23,12 @@ export class Labs {
   ejemploSignal = signal('');
   //ejemploSignal = signal<string>; //otra forma de definir el tipo
 
+  apiGatos = 'https://api.thecatapi.com/v1/images/search?limit=5&api_key=live_s10xsc5yPl9ChpsEGzT7bmBthnnXtgOy4w6HR5aXkXmwM3pxwLchBmPGFr9vlkxS';
+  gatoEjemplo= signal<string[]>([]);
+
+ngOnInit() {
+  this.getGatito();
+}
 
   buttonPrueba() {
     let button = document.querySelector('.button-prueba');
@@ -44,5 +50,20 @@ export class Labs {
     this.ejemploSignal.set(element.value);
     console.log(this.ejemploSignal());
   }
+
+async getGatito(){
+  try{ 
+    const response = await fetch(this.apiGatos);
+    const data = await response.json();
+    const urls = data.map((gatito: any) => gatito.url);
+    this.gatoEjemplo.set(urls);
+    console.log(urls);
+  }catch(error){
+    console.error('Error al obtener el gatito:', error);
+  }
+
+
+
+}
 
 }
