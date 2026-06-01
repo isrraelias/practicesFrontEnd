@@ -19,6 +19,13 @@
     border-radius: 10px;
 }
 
+.randombox-cat span{
+    align-self: center;
+    font-size: 1.5rem;
+    color: red;
+    font-weight: bold;
+}
+
 .randombox-cat__item{
     display: flex;
     flex-direction: column;
@@ -35,9 +42,13 @@
 }
 
 .favoritebox-cat{
+     display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
     width: 80vw;
-    height: 400px;  
-    background-color: rgb(34, 255, 0)
+    min-height: 600px;
+    border: 2px solid black;
+    border-radius: 10px;
 }
 
 .favoritebox-cat img{

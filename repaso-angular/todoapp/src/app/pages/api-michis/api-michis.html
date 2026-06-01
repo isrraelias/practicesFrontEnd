@@ -1,12 +1,21 @@
 <h1>Michi fotos</h1>
 <section class="randombox-cat">
+    <span>{{ msgError }}</span>
+
     @for(item of gatosphotos(); track item){
         <article class="randombox-cat__item">
             <img [src]="item" alt="gatito"/> 
-            <button (click)="getFavoriteMichi()">❤️</button>
+            <button (click)="saveFavoriteMichi(item)">❤️</button> <p>{{msgErrorSaveFavorite}}</p>
         </article>
     }
 </section>
+
 <section class="favoritebox-cat">
-    
+    <span>{{ msgErrorLoadFavorite }}</span>
+    @for(item of favoriteGatosPhotos(); track item){
+        <article class="randombox-cat__item">
+            <img [src]="item" alt="gatito"/> 
+            <button (click)="getFavoriteMichi()">✖️</button>
+        </article>
+    }
 </section>
