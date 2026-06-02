@@ -4,8 +4,8 @@
 
     @for(item of gatosphotos(); track item){
         <article class="randombox-cat__item">
-            <img [src]="item" alt="gatito"/> 
-            <button (click)="saveFavoriteMichi(item)">❤️</button> <p>{{msgErrorSaveFavorite}}</p>
+            <img [src]="item.url" alt="gatito"/> 
+            <button (click)="saveFavoriteMichi(item.id)">❤️</button> <span>{{msgErrorSaveFavorite}}</span>
         </article>
     }
 </section>
@@ -14,8 +14,8 @@
     <span>{{ msgErrorLoadFavorite }}</span>
     @for(item of favoriteGatosPhotos(); track item){
         <article class="randombox-cat__item">
-            <img [src]="item" alt="gatito"/> 
-            <button (click)="getFavoriteMichi()">✖️</button>
+            <img [src]="item.url" alt="gatito"/> 
+            <button (click)="deleteFavoriteMichi(item.id)">✖️</button>
         </article>
     }
 </section>
