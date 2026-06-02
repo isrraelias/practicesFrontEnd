@@ -8,28 +8,27 @@ import { Component, signal } from '@angular/core';
 })
 export class ApiMichis {
   gatosphotos = signal<string[]>([]);
-  gatosphotosFavorite = signal<string[]>([]);
   favoriteGatosPhotos = signal<string[]>([]);
   msgError = '';
   msgErrorLoadFavorite = '';
   msgErrorSaveFavorite = '';
 
-  url = 'https://api.thecatapi.com/v1/images/search?limit=10';
-  urlKey = '&api_key=live_s10xsc5yPl9ChpsEGzT7bmBthnnXtgOy4w6HR5aXkXmwM3pxwLchBmPGFr9vlkxS';
-  urlFavorite = 'https://api.thecatapi.com/v1/favourites?api_key=live_s10xsc5yPl9ChpsEGzT7bmBthnnXtgOy4w6HR5aXkXmwM3pxwLchBmPGFr9vlkxS';
+  url = 'https://api.thecatapi.com/v1/images/search';
+  limitApi = 'limit=10';
+  API_KEY = 'api_key=live_s10xsc5yPl9ChpsEGzT7bmBthnnXtgOy4w6HR5aXkXmwM3pxwLchBmPGFr9vlkxS';
   urlFav = 'https://api.thecatapi.com/v1/favourites';
-  API_KEY = 'live_s10xsc5yPl9ChpsEGzT7bmBthnnXtgOy4w6HR5aXkXmwM3pxwLchBmPGFr9vlkxS';
 
   ngOnInit(){
     this.getRandomMichi();
     this.getFavoriteMichi();
   }
 
+  //trae gatos aleatorios de la api
   async getRandomMichi() {
     try {
-      const response = await fetch(this.url + this.urlKey);
+      const response = await fetch(this.url + '?' + this.limitApi + '&' + this.API_KEY);
       const data = await response.json();
-      const urlsImages = data.map((data: any) => data.url);
+      const urlsImages = data.map((data: any) => [data.url, data.id]);
       this.gatosphotos.set(urlsImages);
       console.log(data);
     } catch (error) {
@@ -37,6 +36,7 @@ export class ApiMichis {
     }
   }
 
+  //guarda un gato como favorito
   async saveFavoriteMichi(id: string) {
     try {
       const rest = await fetch(this.urlFav, {
@@ -56,10 +56,10 @@ export class ApiMichis {
     }
   }
 
-    //trae los gatos favoritos del usuario
+  //trae los gatos favoritos del usuario
   async getFavoriteMichi() {
     try {
-      const response = await fetch(this.urlFav + this.urlKey);
+      const response = await fetch(this.urlFav + '?' + this.API_KEY);
       const data = await response.json(); console.log('obtener fav',data);
       const urlsImages = data.map((data: any) => data.image.url);
       this.favoriteGatosPhotos.set(urlsImages); console.log(urlsImages);
