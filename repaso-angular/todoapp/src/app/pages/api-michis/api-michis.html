@@ -10,6 +10,18 @@
     }
 </section>
 
+<section>
+    <form #michiForms="ngForm" (ngSubmit)="uploadMichi(michiForms)">
+        <label>Foto:</label>
+        <input type="file" id="file" name="file" accept="image/png, image/jpeg, image/jpg" (change)="onFileSelected($event)">
+        <div [hidden]="!imagePreview" style="margin: 15px 0;">
+            <p>Vista previa:</p>
+            <img [src]="imagePreview" alt="Preview" style="max-width: 200px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);" />
+        </div>
+        <button type="button" (click)="uploadMichi(michiForms)">Subir foto</button>
+    </form>
+</section>
+
 <section class="favoritebox-cat">
     <span>{{ msgErrorLoadFavorite }}</span>
     @for(item of favoriteGatosPhotos(); track item){
@@ -19,3 +31,4 @@
         </article>
     }
 </section>
+
