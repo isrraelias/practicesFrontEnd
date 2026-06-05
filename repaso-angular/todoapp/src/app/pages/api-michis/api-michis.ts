@@ -1,5 +1,6 @@
 import { Component, signal } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
+import axios, { isCancel, AxiosError } from "axios";
 
 //definimos una interfase para facilitar el manejo de los datos que recibimos de la api
 interface Michi {
@@ -28,6 +29,14 @@ export class ApiMichis {
   urlFav = 'https://api.thecatapi.com/v1/favourites';
   urlUpload = 'https://api.thecatapi.com/v1/images/upload';
 
+  //axios - configuracion por defecto de la ruta
+  api = axios.create({
+    baseURL: 'https://api.thecatapi.com/v1',
+    headers: {
+      'x-api-key': this.API_KEY
+    }
+  });
+
   ngOnInit(){
     this.getRandomMichi();
     this.getFavoriteMichi();
@@ -37,20 +46,38 @@ export class ApiMichis {
   async getRandomMichi() {
     try {
       // const response = await fetch(this.url + '?' + this.limitApi + '&' + 'api_key=' +this.API_KEY);
-      const response = await fetch(this.url + '?' + this.limitApi,{
-        method: 'GET',
-        headers:{
-          'x-api-key': this.API_KEY,
-        } 
-      });
-      const data = await response.json();
-      const urlsImages: Michi[] = data.map((data: any) => ({
+      // const response = await fetch(this.url + '?' + this.limitApi,{
+      //   method: 'GET',
+      //   headers:{
+      //     'x-api-key': this.API_KEY,
+      //   } 
+      // });
+      //const data = await response.json();
+
+      // const urlsImages: Michi[] = data.map((data: any) => ({
+      //   id: data.id,
+      //   url: data.url
+      // }));
+
+      //////axios
+      const response = await this.api.get(
+        'images/search',{
+          params: {
+            limit: 8
+          }
+        }
+      );
+
+      //response.data contiene un array de objetos con la información de cada gato, por lo que mapeamos ese array para extraer solo el id y la url de cada imagen, y los guardamos en un nuevo array llamado urlsImages.
+      const urlsImages: Michi[] = response.data.map((data: any) => ({
         id: data.id,
         url: data.url
       }));
 
+      /////fin axios
+
       this.gatosphotos.set(urlsImages);
-      console.log(data);
+      console.log(response.data);
     } catch (error) {
       this.msgError = 'Error al obtener gatitos 😿 - '  + error;
     }
@@ -59,18 +86,28 @@ export class ApiMichis {
   //guarda un gato como favorito
   async saveFavoriteMichi(id: string) {
     try {
-      const rest = await fetch(this.urlFav, {
-        method: 'POST',   
-        headers: {
-          'Content-Type': 'application/json',
-          'x-api-key': this.API_KEY
-        },
-        body: JSON.stringify({
-          'image_id': id
-        })
-      });
-      const data = await rest.json();
-      console.log(data); 
+      // const rest = await fetch(this.urlFav, {
+      //   method: 'POST',   
+      //   headers: {
+      //     'Content-Type': 'application/json',
+      //     'x-api-key': this.API_KEY
+      //   },
+      //   body: JSON.stringify({
+      //     'image_id': id
+      //   })
+      // });
+      // const data = await rest.json();
+
+      /////axios
+      const response = await this.api.post(
+        '/favourites',
+        {
+          image_id: id
+        }
+      );
+
+
+      console.log(response.data); 
       this.getFavoriteMichi();
     } catch (error) {
       this.msgErrorSaveFavorite = 'Error al guardar gatito favorito 😿 - '  + error;
