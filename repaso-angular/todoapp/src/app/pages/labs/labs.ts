@@ -1,9 +1,10 @@
 import { Component, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ReactiveFormsModule, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-labs',
-  imports: [CommonModule],
+  imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './labs.html',
   styleUrl: './labs.css'
 })
@@ -21,10 +22,19 @@ export class Labs {
   </ul>`;
   estado: boolean = true;
   ejemploSignal = signal('');
+  ejemploSwitch  = signal('');
+  estadoCats = signal(false);
+  colorCtrl = new FormControl();
   //ejemploSignal = signal<string>; //otra forma de definir el tipo
 
   apiGatos = 'https://api.thecatapi.com/v1/images/search?limit=5&api_key=live_s10xsc5yPl9ChpsEGzT7bmBthnnXtgOy4w6HR5aXkXmwM3pxwLchBmPGFr9vlkxS';
   gatoEjemplo= signal<string[]>([]);
+
+constructor() {
+  this.colorCtrl.valueChanges.subscribe((color) => {
+    console.log('Color seleccionado:', color);
+  });
+}
 
 ngOnInit() {
   this.getGatito();
@@ -51,6 +61,12 @@ ngOnInit() {
     console.log(this.ejemploSignal());
   }
 
+  changeInputSwitch(event: Event){
+    const element = event.target as HTMLInputElement;
+    this.ejemploSwitch.set(element.value);
+    console.log(this.ejemploSwitch());
+  }
+
 async getGatito(){
   try{ 
     const response = await fetch(this.apiGatos);
@@ -60,10 +76,11 @@ async getGatito(){
     console.log(urls);
   }catch(error){
     console.error('Error al obtener el gatito:', error);
-  }
+  }  
+}
 
-
-
+showCats(){
+  this.estadoCats.update((estado) => !estado);  
 }
 
 }

@@ -39,11 +39,34 @@
 
 <div class="gatitos">
   <h2>APIS GATITOS</h2>
-  <section class="box_cats">
+  <section class="box_cats" *ngIf="estadoCats()">
     @for(item of gatoEjemplo(); track item){
        <img [src]="item" alt="gatito"/>
     }
     
   </section>
   <button (click)="getGatito()">Obtener Gatito</button>
+  <button (click) = "showCats()" class="button-cats">Ver Gatitos</button>
 </div>
+
+  <section>
+    <h2>Switch</h2>
+    <input type="text" [value]="ejemploSwitch()" (change)="changeInputSwitch($event)">
+    @switch (ejemploSwitch()) {
+      @case('1') {
+        <p>Estamos en el caso 1</p>
+        <p>Puede tener varios elementos html</p>
+      }
+      @case('2') {
+        <p>Estamos en el caso 2</p>
+      }
+      @default {
+        <p>No se ha seleccionado ningún caso</p>
+      }
+    }
+  </section>
+
+  <section>
+    <input type="color" [formControl]="colorCtrl">
+    <p> El color es {{colorCtrl.value}}</p>
+  </section>
