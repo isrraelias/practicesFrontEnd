@@ -70,3 +70,10 @@
     <input type="color" [formControl]="colorCtrl">
     <p> El color es {{colorCtrl.value}}</p>
   </section>
+
+  <hr>
+  <section>
+    <p>Activación dinámica de clases </p>
+    <input type="text" [formControl]="nombreCtrl"/>
+    <p><span class="error-nombre" [class.show] = "nombreCtrl.invalid && nombreCtrl.touched">Error: Nombre no validado</span></p>
+  </section>

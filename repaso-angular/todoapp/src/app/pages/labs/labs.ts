@@ -1,6 +1,6 @@
-import { Component, signal } from '@angular/core';
+import { Component, signal, effect} from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ReactiveFormsModule, FormControl } from '@angular/forms';
+import { ReactiveFormsModule, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-labs',
@@ -25,6 +25,10 @@ export class Labs {
   ejemploSwitch  = signal('');
   estadoCats = signal(false);
   colorCtrl = new FormControl();
+  nombreCtrl = new FormControl('', { 
+    nonNullable: true ,
+    validators: [Validators.required, Validators.minLength(5)] 
+  });
   //ejemploSignal = signal<string>; //otra forma de definir el tipo
 
   apiGatos = 'https://api.thecatapi.com/v1/images/search?limit=5&api_key=live_s10xsc5yPl9ChpsEGzT7bmBthnnXtgOy4w6HR5aXkXmwM3pxwLchBmPGFr9vlkxS';

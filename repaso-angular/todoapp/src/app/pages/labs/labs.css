@@ -9,3 +9,15 @@
     width: 200px;
     height: 300px;
 }
+
+.error-nombre{
+    color: red;
+    font-size: 12px;
+    opacity: 0;
+    transition: all linear .5s;
+
+    &.show{
+        opacity: 1;
+    }
+}
+
