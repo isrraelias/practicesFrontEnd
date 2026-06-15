@@ -9,4 +9,9 @@ import { Product } from "../../components/product/product";
 })
 export class List {
 
+  listenToChild(Event: string){
+    console.log('Mensaje recibido: ')
+    console.log(Event)
+  }
+
 }

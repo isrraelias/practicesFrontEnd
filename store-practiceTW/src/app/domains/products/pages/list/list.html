@@ -1,2 +1,5 @@
-<h1>TITULO</h1>
-<app-product></app-product>
+<div class="grid grid-cols-3 gap-8">
+    <app-product [titleImg] = "'Imagen 1'" [priceImg] = "90.5" (addToCart) = 'listenToChild($event)'></app-product>
+    <app-product [titleImg] = "'Imagen 2'" [priceImg] = "87.5" (addToCart) = 'listenToChild($event)'></app-product>
+    <app-product [titleImg] = "'Imagen 3'" [priceImg] = "50.5" (addToCart) = 'listenToChild($event)'></app-product>
+</div>
