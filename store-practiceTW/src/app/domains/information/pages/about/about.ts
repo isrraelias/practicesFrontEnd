@@ -10,7 +10,7 @@ import {Counter} from '../../../shared/components/counter/counter'
 export class About {
 
   duration = signal<number>(1000);
-  message = signal<string>('');
+  message = signal<string>('text');
 
   changeDuration(event: Event){
     const input = event.target as HTMLInputElement;
@@ -23,5 +23,7 @@ export class About {
     //input.value siempre es de tipo string por eso hay que modificarlo
     this.message.set(input.value);
   }
+
+
 
 }
