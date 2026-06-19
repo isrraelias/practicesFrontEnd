@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, Output} from '@angular/core';
+import {ProductList} from '../../../shared/models/producList'
 
 @Component({
   selector: 'app-product',
@@ -7,9 +8,11 @@ import { Component, EventEmitter, Input, Output} from '@angular/core';
   styleUrl: './product.css',
 })
 export class Product {
-  @Input( {required: true} ) titleImg: string = '';
-  @Input({required: true}) priceImg: number = 0.0;
-  @Input() pictureImg: string = '';
+  //vamos a optimizar estos inputs
+  // @Input( {required: true} ) titleImg: string = '';
+  // @Input({required: true}) priceImg: number = 0.0;
+  // @Input() pictureImg: string = '';
+  @Input({required: true}) product!: ProductList;
 
   @Output() addToCart = new EventEmitter();
 
