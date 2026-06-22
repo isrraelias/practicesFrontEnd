@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output} from '@angular/core';
+import { Component, EventEmitter, Input, Output, signal} from '@angular/core';
 import {ProductList} from '../../../shared/models/producList'
 
 @Component({
@@ -12,12 +12,12 @@ export class Product {
   // @Input( {required: true} ) titleImg: string = '';
   // @Input({required: true}) priceImg: number = 0.0;
   // @Input() pictureImg: string = '';
-  @Input({required: true}) product!: ProductList;
+  @Input({required: true}) productInput!: ProductList;
 
-  @Output() addToCart = new EventEmitter();
+  @Output() addToCartOutput = new EventEmitter();
 
   AddCartHandler(){
-    this.addToCart.emit('Mensaje emitido del hijo al padre');
+    this.addToCartOutput.emit(this.productInput);
   }
 
 }
