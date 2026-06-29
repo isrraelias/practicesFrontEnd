@@ -1,4 +1,5 @@
-import { Component, signal } from '@angular/core';
+import { Component, signal, Input } from '@angular/core';
+import {ProductList} from '../../models/producList'
 
 @Component({
   selector: 'app-header',
@@ -9,11 +10,14 @@ import { Component, signal } from '@angular/core';
 export class Header {
 
   hideSideMenu= signal(true);
+  @Input() cart: ProductList[] = [];
 
   toogleSideMenu(){
     this.hideSideMenu.update((value) => !value)
   }
 
-
+  updateNumberCart(){
+    
+  }
 
 }
