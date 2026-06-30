@@ -40,7 +40,7 @@
       </div>
       <div class="flex items-center">
         <button class="p-2 border rounded relative" (click)="toogleSideMenu()">
-      <div class="absolute -top-2 -left-2 rounded h-5 w-5 bg-black text-white text-xs">{{cart.length}}</div>
+      <div class="absolute -top-2 -left-2 rounded h-5 w-5 bg-black text-white text-xs">{{cart().length}}</div>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -84,7 +84,7 @@
     </button>
   </div>
   <div>
-    @for(itemsCart of cart; track itemsCart.id){
+    @for(itemsCart of cart(); track itemsCart.id){
       <article class="grid grid-cols-[80px_1fr]  gap-3 p-3 border-b">
         <img class="w-16 h-16 object-cover rounded" [src]="itemsCart.image">
         <div class="flex flex-col justify-center">
@@ -98,5 +98,8 @@
       </div>
       </article>
     }
+    <article>
+      <p>Total: {{total()}}</p>
+    </article>
   </div>
 </div>  
