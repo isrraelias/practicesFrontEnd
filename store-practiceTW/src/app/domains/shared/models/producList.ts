@@ -1,7 +1,9 @@
 export interface ProductList{
-    id: number,
-    title: string,
-    price: number,
-    image: string,
-    creationDate: string
+  id: number,
+  title: string,
+  price: number,
+  description: string,
+  category: string,
+  image: string,
+  rating: [count: number, count: number],
 }
