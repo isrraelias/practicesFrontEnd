@@ -1,10 +1,12 @@
 import { Component, EventEmitter, inject, Input, Output, signal} from '@angular/core';
+import { CommonModule } from '@angular/common';
 import {ProductList} from '../../../shared/models/producList'
 import {ProductService} from '../../../shared/services/productService'
+import { TimeAgoPipe } from '@shared/pipes/time-ago-pipe';
 
 @Component({
   selector: 'app-product',
-  imports: [],
+  imports: [CommonModule,TimeAgoPipe],
   templateUrl: './product.html',
   styleUrl: './product.css',
 })
@@ -16,6 +18,9 @@ export class Product {
   @Input({required: true}) productInput!: ProductList;
 
   @Output() addToCartOutput = new EventEmitter();
+
+
+  fechaPipe: Date = new Date(2026,6,3,10,30) // '2026-07-01'
 
   private productService = inject(ProductService);
 
