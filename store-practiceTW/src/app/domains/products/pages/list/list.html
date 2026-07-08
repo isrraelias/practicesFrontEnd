@@ -1,5 +1,13 @@
-<div class="grid grid-cols-3 gap-8">
-    <app-product [titleImg] = "'Imagen 1'" [priceImg] = "90.5" (addToCart) = 'listenToChild($event)'></app-product>
-    <app-product [titleImg] = "'Imagen 2'" [priceImg] = "87.5" (addToCart) = 'listenToChild($event)'></app-product>
-    <app-product [titleImg] = "'Imagen 3'" [priceImg] = "50.5" (addToCart) = 'listenToChild($event)'></app-product>
+<div class="container mx-auto">
+
+    <!-- <app-header [cart]="itemsCart()"></app-header> -->
+    <app-header></app-header>
+    <div class="grid grid-cols-4 gap-8 mt-5">
+        @for(product of products();track product.id) {
+            <app-product 
+            [productInput] = "product" 
+            (addToCartOutput) = 'addToCart(product)'>
+        </app-product>
+    }
+    </div>
 </div>
